@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour {
+namespace Roll_a_Ball {
+	public class CameraController : MonoBehaviour {
 
-    public GameObject player;
+		public GameObject player;
 
-    private Vector3 offset;
+		private Vector3 offset;
 
-	void Start () {
-        offset = transform.position - player.transform.position;
-	}
-	
-	void LateUpdate () {
-        transform.position = player.transform.position + offset;
+		void Start() {
+			this.offset = this.transform.position - this.player.transform.position;
+		}
+
+		void LateUpdate() {
+			this.transform.position = this.player.transform.position + this.offset;
+		}
 	}
 }
