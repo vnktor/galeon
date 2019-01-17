@@ -12,38 +12,37 @@ public class PlayerController : MonoBehaviour {
 
 	private void Start()
 	{
-		rb = GetComponent<Rigidbody>();
-		count = 0;
-		SetCountText();
-		winText.text = "";
+        this.rb = GetComponent<Rigidbody>();
+        this.count = 0;
+        SetCountText();
+        this.winText.text = "";
 	}
 
-	void FixedUpdate()
+    private void FixedUpdate()
 	{
 		float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
 
 		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-		rb.AddForce(movement*speed);
+        this.rb.AddForce(movement* this.speed);
 	}
 
-	void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.CompareTag("PickUp"))
 		{
 			other.gameObject.SetActive(false);
-			count = count + 1;
+            this.count = this.count + 1;
 			SetCountText();
 		}
 	}
 
-	void SetCountText()
+    private void SetCountText()
 		{
-		countText.text = "Count: " + count.ToString();
-		if(count>=12)
+        this.countText.text = "Count: " + this.count.ToString();
+		if(this.count >=12)
 			{
-			winText.text = "Победа";
+            this.winText.text = "Победа";
 			}
 		}
 }
