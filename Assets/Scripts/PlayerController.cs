@@ -12,14 +12,14 @@ namespace Roll_a_Ball {
 		private Rigidbody rb;
 		private int count;
 
-		void Start() {
+		public void Start() {
 			rb = GetComponent<Rigidbody>();
 			this.count = 0;
 			SetCountText();
 			winText.text = "";
 		}
 
-		void FixedUpdate() {
+		public void FixedUpdate() {
 			float moveHorizontal = Input.GetAxis("Horizontal");
 			float moveVertical = Input.GetAxis("Vertical");
 
@@ -28,16 +28,15 @@ namespace Roll_a_Ball {
 			rb.AddForce(movement * speed);
 		}
 
-		void OnTriggerEnter(Collider other) {
-			if (other.gameObject.CompareTag("Pick Up"))
-			{
+		public void OnTriggerEnter(Collider other) {
+			if (other.gameObject.CompareTag("Pick Up")) {
 				other.gameObject.SetActive(false);
 				this.count = this.count + 1;
 				SetCountText();
 			}
 		}
 
-		void SetCountText() {
+		public void SetCountText() {
 			this.countText.text = "Count: " + this.count.ToString();
 			if (this.count >= 12) {
 				winText.text = "You Win!";

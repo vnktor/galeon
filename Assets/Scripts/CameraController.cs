@@ -8,11 +8,11 @@ namespace Roll_a_Ball {
 
 		private Vector3 offset;
 
-		void Start() {
+		public void Start() {
 			this.offset = this.transform.position - this.player.transform.position;
 		}
 
-		void LateUpdate() {
+		public void LateUpdate() {
 			this.transform.position = this.player.transform.position + this.offset;
 		}
 	}
