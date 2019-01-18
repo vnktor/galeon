@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Roll_a_Ball {
 	public class Rotator : MonoBehaviour {
 
-		public void Update() {
+		private void Update() {
 			this.transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
 		}
 	}
