@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Rotate : MonoBehaviour {
-
-	void Update () {
-        transform.Rotate (new Vector3(190, 0, 0) * Time.deltaTime);
+namespace RotatePoint {
+	public class Rotate : MonoBehaviour {
+		
+		void Update () {
+			transform.Rotate (new Vector3(190, 0, 0) * Time.deltaTime);
+		}
 	}
 }

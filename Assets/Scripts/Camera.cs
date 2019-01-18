@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Camera : MonoBehaviour
-{
-
-    public GameObject Player;
-    private Vector3 offset;
-
-    void Start() { 
-        offset = transform.position - Player.transform.position;
-       }
-
-    void LateUpdate() { 
-        transform.position = Player.transform.position + offset;
-    } 
+namespace RollaBall {
+	public class Camera : MonoBehaviour {
+		public GameObject player;
+		
+		private Vector3 offset;
+		
+		private void Start() {
+			this.offset = this.transform.position - this.player.transform.position;
+		}
+		
+		private void LateUpdate() {
+			this.transform.position = this.player.transform.position + this.offset;
+		}
+	}
 }
