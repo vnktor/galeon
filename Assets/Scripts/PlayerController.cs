@@ -19,8 +19,7 @@ namespace Roll_a_Ball {
 			winText.text = "";
 		}
 
-		void FixedUpdate()
-		{
+		void FixedUpdate() {
 			float moveHorizontal = Input.GetAxis("Horizontal");
 			float moveVertical = Input.GetAxis("Vertical");
 
@@ -28,8 +27,8 @@ namespace Roll_a_Ball {
 
 			rb.AddForce(movement * speed);
 		}
-		void OnTriggerEnter(Collider other)
-		{
+
+		void OnTriggerEnter(Collider other) {
 			if (other.gameObject.CompareTag("Pick Up"))
 			{
 				other.gameObject.SetActive(false);
@@ -37,11 +36,10 @@ namespace Roll_a_Ball {
 				SetCountText();
 			}
 		}
-		void SetCountText()
-		{
+
+		void SetCountText() {
 			this.countText.text = "Count: " + this.count.ToString();
-			if (this.count >= 12)
-			{
+			if (this.count >= 12) {
 				winText.text = "You Win!";
 			}
 		}

@@ -2,10 +2,10 @@
 using UnityEngine;
 
 namespace Roll_a_Ball {
-    public class Rotator : MonoBehaviour {
+	public class Rotator : MonoBehaviour {
 
-        void Update() {
-            this.transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
-        }
-    }
+		void Update() {
+			this.transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
+		}
+	}
 }
