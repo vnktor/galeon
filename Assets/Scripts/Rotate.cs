@@ -3,7 +3,7 @@
 namespace RotatePoint {
 	public class Rotate : MonoBehaviour {
 		
-		void Update () {
+		private void Update () {
 			transform.Rotate (new Vector3(190, 0, 0) * Time.deltaTime);
 		}
 	}

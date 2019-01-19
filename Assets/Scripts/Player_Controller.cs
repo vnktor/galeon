@@ -11,11 +11,11 @@ namespace RollaBoll {
 // Text fields
 		public Text countText, winText;
 		
-		void Start() {
+		private void Start() {
 			rb = GetComponent<Rigidbody>();
 			count = 0;
 			winText.text = "";
-			setCount ();
+			SetCount ();
 		}
 		
 		private void FixedUpdate() {
@@ -29,16 +29,17 @@ namespace RollaBoll {
 		
 		private void OnTriggerEnter (Collider gold) { 
 			if (gold.tag == "Point") {
-			Destroy (gold.gameObject);
-			this.count++;
-			setCount();
+				Destroy (gold.gameObject);
+				this.count++;
+				SetCount();
+			}
 		}
-	}
 		
-		private void setCount () {
+		private void SetCount () {
 			this.countText.text = "Gold: " + count.ToString ();
-			if (this.count >= 11)
+			if (this.count >= 11) {
 				this.winText.text = "You Win!";
 			}
 		}
 	}
+}
