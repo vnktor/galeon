@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 			this.trPlayer.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 			this.UpdTimer = 0.15f;
 			this.trPlayer.position = new Vector3(PlayerPrefs.GetFloat("PlayerX"), 0.5f, PlayerPrefs.GetFloat("PlayerZ"));
-        }
+		}
 
 		if (this.UpdTimer != -1f) {
 			UpdTimer -= Time.deltaTime;
