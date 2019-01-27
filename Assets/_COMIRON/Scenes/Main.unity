@@ -1304,7 +1304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cabf5de116f057498f7aa3b551c9866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1380941785}
 --- !u!4 &1207769327 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4954920739434880, guid: a159b46624c347741b3c8e62292dfb75,
