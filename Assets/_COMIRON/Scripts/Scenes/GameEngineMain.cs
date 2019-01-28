@@ -1,7 +1,10 @@
 ﻿using COMIRON.GameFramework.Core;
+using COMIRON.Managers.ManagerMainBuilding;
 using COMIRON.Managers.ManagerMap;
 using COMIRON.Managers.ManagerRoads;
 using COMIRON.Settings;
+using COMIRON.Ui;
+using COMIRON.Ui.Panels;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,9 +17,9 @@ namespace COMIRON.Scenes {
 		
 		protected override void AwakeInherit() {
 			var managerMap = this.GetManager<ManagerMap>();
+			var managerMainBuilding = this.GetManager<ManagerMainBuilding>();
 			var settingsMap = this.GetSettings<SettingsMap>();
 			
-			var managerRoads = this.GetManager<ManagerRoads>();
 			
 			var groundStartPosition = settingsMap.GetGroundStartPosition();
 			var groundCols = settingsMap.GetGroundColumnsCount();
@@ -30,12 +33,16 @@ namespace COMIRON.Scenes {
 			}
 			
 			
-			//managerRoads.CreateControllerRoadCorner(groundStartPosition + new Vector3(30, 0.1f, 30));
-			//managerRoads.CreateControllerRoadStraight(groundStartPosition + new Vector3(30, 0.1f, 30 + 7.62f));
 			var roadCreateResult = this.CreateRoad(RoadDirection.Up, groundStartPosition + new Vector3(40, 0.1f, 30), 5);
 			roadCreateResult = this.CreateRoad(RoadDirection.Right, roadCreateResult.roadFinalPosition, 5, 1);
 			roadCreateResult = this.CreateRoad(RoadDirection.Down, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateRoad(RoadDirection.Left, roadCreateResult.roadFinalPosition, 5, 1);
+			
+			
+			var controllerMainBuilding = managerMainBuilding.CreateControllerMainBuilding(groundStartPosition + new Vector3((groundCols - 1) / 2f * groundWidth, 0, (groundRows / 2f - 1) * groundLength));
+			controllerMainBuilding.OnActionClick += delegate {
+				this.ShowPanelMainBuildingInfo();
+			};
 		}
 		
 		protected override void Update() {
@@ -91,7 +98,16 @@ namespace COMIRON.Scenes {
 				),
 			};
 		}
+		
+		private void ShowPanelMainBuildingInfo() {
+			var panelMainBuildingInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelMainBuildingInfo>();
+			panelMainBuildingInfo.OnActionButtonCloseClick += delegate {
+				GameObject.Destroy(panelMainBuildingInfo.gameObject);
+			};
 			
+			panelMainBuildingInfo.Enable();
+		}
+		
 		private struct RoadCreateResult {
 			public Vector3 roadFinalPosition;
 		}
