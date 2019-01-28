@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9736291c9ef7ab14ca6e8d1b9912a3e2, type: 3}
+  m_Name: SettingsTransport
+  m_EditorClassIdentifier: 
+  controllerCar02Prefab: {fileID: 114724560660158478, guid: 848e8d4757cacd349a5c68bf49d3fe17,
+    type: 2}
+  controllerCar03Prefab: {fileID: 114386645196501308, guid: 9943b5dc1b6675042a3821f1568f97f7,
+    type: 2}
+  controllerCar04Prefab: {fileID: 114727367901105254, guid: ae8f2e424098a3947b1c3faf6c3e65ad,
+    type: 2}

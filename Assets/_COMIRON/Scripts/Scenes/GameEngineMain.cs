@@ -3,6 +3,7 @@ using COMIRON.Managers.ManagerBuildings;
 using COMIRON.Managers.ManagerMainBuilding;
 using COMIRON.Managers.ManagerMap;
 using COMIRON.Managers.ManagerRoads;
+using COMIRON.Managers.ManagerTransport;
 using COMIRON.Settings;
 using COMIRON.Ui;
 using COMIRON.Ui.Panels;
@@ -80,7 +81,8 @@ namespace COMIRON.Scenes {
 
 		private RoadCreateResult CreateRoad(RoadDirection roadDirection, Vector3 startPosition, int length, int offset = 0) {
 			var managerRoads = this.GetManager<ManagerRoads>();
-			
+			var managerTransport = this.GetManager<ManagerTransport>();
+
 			Quaternion roadRotation = Quaternion.identity;
 			Vector3 roadAddPositionDirection = Vector3.zero;
 			switch (roadDirection) {
@@ -109,9 +111,14 @@ namespace COMIRON.Scenes {
 				
 				controllerRoadStraight.transform.localRotation = roadRotation;
 			}
-			
+
 			var controllerRoadCorner = managerRoads.CreateControllerRoadCorner(
 				startPosition + new Vector3(0, 0.1f, 0) + roadAddPositionDirection * 7.62f * (length + offset)
+			);
+
+			//Выводим машину в центр каждого угла
+			managerTransport.CreateControllerCar04(
+				startPosition + new Vector3(0, 0.15f, 0) + roadAddPositionDirection * 7.62f * (length + offset)
 			);
 			
 			var cornerPosition = controllerRoadCorner.transform.position;
