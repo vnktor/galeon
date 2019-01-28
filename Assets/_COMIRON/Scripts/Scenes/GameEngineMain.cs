@@ -42,7 +42,6 @@ namespace COMIRON.Scenes {
 			roadCreateResult = this.CreateRoad(RoadDirection.Left, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
 			
-			
 			var controllerMainBuilding = managerMainBuilding.CreateControllerMainBuilding(groundStartPosition + new Vector3((groundCols - 1) / 2f * groundWidth, 0, (groundRows / 2f - 1) * groundLength));
 			controllerMainBuilding.OnActionClick += delegate {
 				this.ShowPanelMainBuildingInfo();
