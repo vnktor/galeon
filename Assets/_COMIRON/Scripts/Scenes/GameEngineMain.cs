@@ -16,9 +16,7 @@ namespace COMIRON.Scenes {
 		protected override void AwakeInherit() {
 			var managerMap = this.GetManager<ManagerMap>();
 			var settingsMap = this.GetSettings<SettingsMap>();
-			
-			var managerRoads = this.GetManager<ManagerRoads>();
-			
+	
 			var groundStartPosition = settingsMap.GetGroundStartPosition();
 			var groundCols = settingsMap.GetGroundColumnsCount();
 			var groundRows = settingsMap.GetGroundRowsCount();
@@ -30,8 +28,6 @@ namespace COMIRON.Scenes {
 				}
 			}
 			
-			//managerRoads.CreateControllerRoadCorner(groundStartPosition + new Vector3(30, 0.1f, 30));
-			//managerRoads.CreateControllerRoadStraight(groundStartPosition + new Vector3(30, 0.1f, 30 + 7.62f));
 			var roadCreateResult = this.CreateRoad(RoadDirection.Up, groundStartPosition + new Vector3(40, 0.1f, 30), 5);
 			roadCreateResult = this.CreateRoad(RoadDirection.Right, roadCreateResult.roadFinalPosition, 5, 1);
 			roadCreateResult = this.CreateRoad(RoadDirection.Down, roadCreateResult.roadFinalPosition, 5, 1);
@@ -84,7 +80,7 @@ namespace COMIRON.Scenes {
 			);
 
 			//Выводим машину в центр каждого угла
-			var controllerTransport = managerTransport.CreateControllerCar04(
+			managerTransport.CreateControllerCar04(
 				startPosition + new Vector3(0, 0.15f, 0) + roadAddPositionDirection * 7.62f * (length + offset)
 			);
 			
