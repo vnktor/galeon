@@ -16,9 +16,6 @@ namespace COMIRON.Scenes {
 		protected override void AwakeInherit() {
 			var managerMap = this.GetManager<ManagerMap>();
 			var settingsMap = this.GetSettings<SettingsMap>();
-			
-			var managerRoads = this.GetManager<ManagerRoads>();
-			var managerBuildings = this.GetManager<ManagerBuildings>();
 
 			var groundStartPosition = settingsMap.GetGroundStartPosition();
 			var groundCols = settingsMap.GetGroundColumnsCount();
@@ -31,8 +28,6 @@ namespace COMIRON.Scenes {
 				}
 			}
 
-			//managerRoads.CreateControllerRoadCorner(groundStartPosition + new Vector3(30, 0.1f, 30));
-			//managerRoads.CreateControllerRoadStraight(groundStartPosition + new Vector3(30, 0.1f, 30 + 7.62f));
 			var roadCreateResult = this.CreateRoad(RoadDirection.Up, groundStartPosition + new Vector3(40, 0.1f, 30), 5);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
 			roadCreateResult = this.CreateRoad(RoadDirection.Right, roadCreateResult.roadFinalPosition, 5, 1);
@@ -51,7 +46,7 @@ namespace COMIRON.Scenes {
 			
 		}
 
-		private void CreateBuilding(Vector3 position, Direction directionBuilding){
+		private void CreateBuilding(Vector3 position, Direction directionBuilding) {
 			var managerBuildings = this.GetManager<ManagerBuildings>();
 
 			Quaternion buildingQuaternion;
@@ -130,8 +125,7 @@ namespace COMIRON.Scenes {
 			Right,
 		}
 
-		private enum Direction
-		{
+		private enum Direction {
 			Left,
 			Right,
 		}
