@@ -14,7 +14,6 @@ namespace Roll_a_Ball {
 
 		private void Start() {
 			this.rb = GetComponent<Rigidbody>();
-			Debug.Log("this.rb" + this.rb);
 			this.count = 0;
 			SetCountText();
 			this.winText.text = "";
