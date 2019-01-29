@@ -26,16 +26,16 @@ public class RemoteControlBall : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other) {
 		if(other.gameObject.CompareTag("Cube")) {
-		other.gameObject.SetActive(false);
-		this.count++;
-		SetTextCount(this.count);
+			other.gameObject.SetActive(false);
+			this.count++;
+			SetTextCount(this.count);
 		}
 	}
 
 	private void SetTextCount(int aCount) {
 		this.textCont.text = "Count :" + aCount.ToString();
 		if(aCount > 11) {
-		this.winText.text = "Вы выйграли!";
+			this.winText.text = "Вы выйграли!";
 		}
 	}
 }
