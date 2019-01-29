@@ -34,7 +34,7 @@ public class RemoteControlBall : MonoBehaviour {
 
 	private void SetTextCount(int aCount) {
 		this.textCont.text = "Count :" + aCount.ToString();
-		if(count > 11) {
+		if(aCount > 11) {
 		this.winText.text = "Вы выйграли!";
 		}
 	}
