@@ -21,7 +21,7 @@ public class BallControl : MonoBehaviour {
 		float MoveVertical=Input.GetAxis("Vertical");
 		float speed = 10.0f;
 		Vector3 movement = new Vector3(MoveHorizontal,0.0f,MoveVertical);
-		rb.AddForce(movement * speed);
+		this.rb.AddForce(movement * speed);
 	}
 
 	private void OnTriggerEnter(Collider other) {
