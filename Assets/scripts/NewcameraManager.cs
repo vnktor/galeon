@@ -10,7 +10,7 @@ public class NewcameraManager : MonoBehaviour {
         offset = transform.position - player.transform.position;
     }
 
-    void LateUpdate() {
+    private void LateUpdate() {
         transform.position = player.transform.position+offset;
     }
 }
