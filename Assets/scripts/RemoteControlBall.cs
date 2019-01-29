@@ -17,7 +17,7 @@ public class RemoteControlBall : MonoBehaviour {
         winText.text = "";
     }
 
-    void FixedUpdate()  {
+    private void FixedUpdate()  {
         float MoveHorizontal = Input.GetAxis("Horizontal");
         float MoveVertical = Input.GetAxis("Vertical");
         float speed = 10.0f;
