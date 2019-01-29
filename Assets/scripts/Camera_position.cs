@@ -7,10 +7,10 @@ public class Camera_position : MonoBehaviour {
 	private Vector3 offset;
 
 	private void Start() {
-		offset = transform.position - player.transform.position;
+		this.offset = transform.position - this.player.transform.position;
 	}
 
 	private void LateUpdate() {
-		transform.position = player.transform.position + offset;
+		transform.position = this.player.transform.position + this.offset;
 	}
 }

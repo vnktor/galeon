@@ -10,10 +10,10 @@ public class BallControl : MonoBehaviour {
 	public Text winText;
 
 	private void Start() {
-		rb = GetComponent<Rigidbody>();
-		count = 0;
-		SetTextCount(count);
-		winText.text = "";
+		this.rb = GetComponent<Rigidbody>();
+		this.count = 0;
+		SetTextCount(this.count);
+		this.winText.text = "";
 	}
 
 	private void FixedUpdate() {
@@ -27,15 +27,15 @@ public class BallControl : MonoBehaviour {
 	private void OnTriggerEnter(Collider other) {
 	if(other.gameObject.CompareTag("Cube")) {
 		other.gameObject.SetActive(false);
-		count++;
-		SetTextCount(count);
+		this.count++;
+		SetTextCount(this.count);
 		}
 	}
 
 	private void SetTextCount(int count) {
-		textCont.text = "Count :" + count.ToString();
+		this.textCont.text = "Count :" + count.ToString();
 		if(count > 11) {
-		winText.text = "Вы выйграли!";
+		this.winText.text = "Вы выйграли!";
 		}
 	}
 }
