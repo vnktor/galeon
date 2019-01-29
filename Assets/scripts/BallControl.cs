@@ -12,7 +12,7 @@ public class BallControl : MonoBehaviour {
 	private void Start() {
 		this.rb = GetComponent<Rigidbody>();
 		this.count = 0;
-		SetTextCount(this.count);
+		this.SetTextCount(this.count);
 		this.winText.text = "";
 	}
 
@@ -28,7 +28,7 @@ public class BallControl : MonoBehaviour {
 		if(other.gameObject.CompareTag("Cube")) {
 			other.gameObject.SetActive(false);
 			this.count++;
-			SetTextCount(this.count);
+			this.SetTextCount(this.count);
 		}
 	}
 
