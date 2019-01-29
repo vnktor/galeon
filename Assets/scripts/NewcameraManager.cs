@@ -7,10 +7,10 @@ public class NewcameraManager : MonoBehaviour {
 	private Vector3 offset;
 
 	private void Start() {
-		this.offset = transform.position - this.player.transform.position;
+		this.offset = this.transform.position - this.player.transform.position;
 	}
 
 	private void LateUpdate() {
-		transform.position = this.player.transform.position + this.offset;
+		this.transform.position = this.player.transform.position + this.offset;
 	}
 }
