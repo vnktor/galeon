@@ -34,7 +34,8 @@ public class BallControl : MonoBehaviour {
 
     private void SetTextCount(int count) {
         textCont.text = "Count :" + count.ToString();
-        if (count > 11)
+        if (count > 11) {
             winText.text = "Вы выйграли!";
+        }    
     }
 }
