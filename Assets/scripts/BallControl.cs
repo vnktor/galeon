@@ -14,7 +14,7 @@ public class BallControl : MonoBehaviour {
 	private Vector3 aStartScale;
 	private Vector3 aCurrentScale;
 	private Vector3 aCurrentPointRescale;
-	private bool isReScale;
+	private bool aIsReScale;
 	private float aSpeedReScale;
 	private int aWayRescale;
 
@@ -24,12 +24,12 @@ public class BallControl : MonoBehaviour {
 		this.winText.text = "";
 		this.aFlagClickMouse = true;
 		this.aStartScale= transform.localScale;
-		this.isReScale = false;
+		this.aIsReScale = false;
 		this.aSpeedReScale = 2.0f;
 	}
 
 	private void Update() {
-		if (Input.GetMouseButtonDown(0) && !this.isReScale) {
+		if (Input.GetMouseButtonDown(0) && !this.aIsReScale) {
 			this.aRay = this.aCurrentCamera.ScreenPointToRay(Input.mousePosition);
 			this.aHits = UnityEngine.Physics.RaycastAll(this.aRay);
 			for (int i = 0; i < this.aHits.Length; i++) {
@@ -48,13 +48,13 @@ public class BallControl : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		if(this.isReScale) {
+		if(this.aIsReScale) {
 			this.MakeReScale();
 		}
 	}
 
 	private void SetMakeReScale(int aWayReScale,Vector3 PointReScale) {
-		this.isReScale = true;
+		this.aIsReScale = true;
 		this.aWayRescale = aWayReScale;
 		this.aCurrentScale=this.transform.localScale;
 		this.aCurrentPointRescale = PointReScale;
@@ -64,11 +64,11 @@ public class BallControl : MonoBehaviour {
 		this.aCurrentScale += this.aStartScale * this.aSpeedReScale * Time.deltaTime * this.aWayRescale;
 		if (this.aCurrentScale.x <= 0) {
 			this.aCurrentScale = new Vector3(0, 0, 0);
-			this.isReScale = false;
+			this.aIsReScale = false;
 		}
 		if (this.aCurrentScale.x >= this.aStartScale.x) {
 			this.aCurrentScale = this.aStartScale;
-			this.isReScale = false;
+			this.aIsReScale = false;
 		}
 		this.transform.position = (new Vector3(this.aCurrentPointRescale.x, this.aCurrentScale.y / 2.0f, this.aCurrentPointRescale.z));
 		this.transform.localScale = (Vector3)this.aCurrentScale;
