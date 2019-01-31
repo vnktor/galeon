@@ -1424,6 +1424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textCont: {fileID: 765244630}
   winText: {fileID: 533811440}
+  aCurrentCamera: {fileID: 1185493173}
 --- !u!1001 &1455662356
 Prefab:
   m_ObjectHideFlags: 0
