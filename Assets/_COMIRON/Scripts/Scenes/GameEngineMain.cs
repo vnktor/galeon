@@ -1,4 +1,5 @@
 ﻿using COMIRON.GameFramework.Core;
+using COMIRON.GameFramework.Ui;
 using COMIRON.Managers.ManagerBuildings;
 using COMIRON.Managers.ManagerMainBuilding;
 using COMIRON.Managers.ManagerMap;
@@ -61,22 +62,25 @@ namespace COMIRON.Scenes {
 			var managerBuildings = this.GetManager<ManagerBuildings>();
 
 			Quaternion buildingQuaternion;
-			ControllerBase controller;
+			ControllerBuildings controller;
 			switch (directionBuilding) {
 				case Direction.Left:
 					buildingQuaternion = Quaternion.Euler(0, -90, 0);
-					controller = managerBuildings.CreateControllerHouse(position + new Vector3(10, 0, 0));
+					controller = managerBuildings.CreateControllerHouse(position + new Vector3(10, 0, 0), "house" + Random.Range(1, 100).ToString());
 					break;
 				case Direction.Right:
 					buildingQuaternion = Quaternion.Euler(0, 90, 0);
-					controller = managerBuildings.CreateControllerShop(position + new Vector3(-10, 0, 0));
+					controller = managerBuildings.CreateControllerShop(position + new Vector3(-10, 0, 0), "shop" + Random.Range(1, 100).ToString());
 					break;
 				default:
 					buildingQuaternion = Quaternion.Euler(0, -90, 0);
-					controller = managerBuildings.CreateControllerHouse(position + new Vector3(10, 0, 0));
+					controller = managerBuildings.CreateControllerHouse(position + new Vector3(10, 0, 0), "house" + Random.Range(1, 100).ToString());
 					break;
 			}
 			controller.transform.localRotation = buildingQuaternion;
+			controller.OnActionClick += delegate {
+				this.ShowPanelBuildingsInfo(controller);
+			};
 		}
 
 		private RoadCreateResult CreateRoad(RoadDirection roadDirection, Vector3 startPosition, int length, int offset = 0) {
@@ -139,10 +143,21 @@ namespace COMIRON.Scenes {
 			
 			panelMainBuildingInfo.Enable();
 		}
-		
+
+		private void ShowPanelBuildingsInfo(ControllerBuildings obj) {
+			var panelInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelBuildingsInfo>();
+			panelInfo.OnActionButtonCloseClick += delegate {
+				GameObject.Destroy(panelInfo.gameObject);
+			};
+			panelInfo.SetBuilding(obj);
+			panelInfo.Enable();
+		}
+
 		private struct RoadCreateResult {
 			public Vector3 roadFinalPosition;
 		}
+
+
 		
 		private enum RoadDirection {
 			Up,

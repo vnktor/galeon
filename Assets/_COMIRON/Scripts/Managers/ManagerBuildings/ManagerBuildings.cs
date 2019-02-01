@@ -12,16 +12,16 @@ namespace COMIRON.Managers.ManagerBuildings {
 			this.settingsBuildings = this.GetSettings<SettingsBuildings>();
 		}
 
-		public ControllerHouse CreateControllerHouse(Vector3 position) {
+		public ControllerHouse CreateControllerHouse(Vector3 position, string name) {
 			return this.CreateController<ControllerHouse>(
-				this.settingsBuildings.GetControllerHousePrefab(),
+				this.settingsBuildings.GetControllerHousePrefab(name),
 				position
 			);
 		}
 
-		public ControllerShop CreateControllerShop(Vector3 position) {
+		public ControllerShop CreateControllerShop(Vector3 position, string name) {
 			return this.CreateController<ControllerShop>(
-				this.settingsBuildings.GetControllerShopPrefab(),
+				this.settingsBuildings.GetControllerShopPrefab(name),
 				position
 			);
 		}

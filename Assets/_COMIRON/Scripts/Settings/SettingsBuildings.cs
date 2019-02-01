@@ -15,12 +15,16 @@ namespace COMIRON.Settings {
 
 		}
 
-		public ControllerHouse GetControllerHousePrefab() {
-			return this.controllerHousePrefab;
+		public ControllerHouse GetControllerHousePrefab(string name) {
+			var prefab = this.controllerHousePrefab;
+			prefab.buildingName = name;
+			return prefab;
 		}
 
-		public ControllerShop GetControllerShopPrefab() {
-			return this.controllerShopPrefab;
+		public ControllerShop GetControllerShopPrefab(string name) {
+			var prefab = this.controllerShopPrefab;
+			prefab.buildingName = name;
+			return prefab;
 		}
 	}
 }

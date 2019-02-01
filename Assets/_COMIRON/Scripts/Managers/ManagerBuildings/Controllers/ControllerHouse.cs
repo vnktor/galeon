@@ -4,7 +4,7 @@ using COMIRON.GameFramework.Core;
 using UnityEngine;
 
 namespace COMIRON.Managers.ManagerBuildings {
-	public class ControllerHouse : ControllerBase {
+	public class ControllerHouse : ControllerBuildings {
 
 	}
 }

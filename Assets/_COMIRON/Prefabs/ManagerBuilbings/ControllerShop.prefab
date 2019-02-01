@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4274098352864866}
   - component: {fileID: 114180846495910456}
+  - component: {fileID: 65792253008167800}
   m_Layer: 0
   m_Name: ControllerShop
   m_TagString: Untagged
@@ -37,8 +38,6 @@ GameObject:
   - component: {fileID: 4218482524124350}
   - component: {fileID: 33767140902120694}
   - component: {fileID: 23528816581359282}
-  - component: {fileID: 64773794164610524}
-  - component: {fileID: 95184275909388572}
   m_Layer: 0
   m_Name: Building 13
   m_TagString: Untagged
@@ -115,38 +114,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1553996262629212}
   m_Mesh: {fileID: 4300000, guid: 844db206c0badd049bcbd0a23c725bc7, type: 3}
---- !u!64 &64773794164610524
-MeshCollider:
+--- !u!65 &65792253008167800
+BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1553996262629212}
+  m_GameObject: {fileID: 1525964792620148}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 844db206c0badd049bcbd0a23c725bc7, type: 3}
---- !u!95 &95184275909388572
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1553996262629212}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 844db206c0badd049bcbd0a23c725bc7, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 2
+  m_Size: {x: 12.41, y: 3.9, z: 10.29}
+  m_Center: {x: -0.6, y: 1.83, z: 0.47}
 --- !u!114 &114180846495910456
 MonoBehaviour:
   m_ObjectHideFlags: 1
