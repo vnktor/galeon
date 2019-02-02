@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using COMIRON.GameFramework.Ui;
+﻿using COMIRON.GameFramework.Ui;
 using COMIRON.Managers.ManagerBuildings;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,14 +22,14 @@ namespace COMIRON.Ui.Panels {
 			};
 		}
 
-		public void SetBuilding(ControllerBuildings newBuilding){
+		public void SetBuilding(ControllerBuildings newBuilding) {
 			if (this.building == null) {
 				this.building = newBuilding;
 			}
 		}
 
 		protected override void EnableInherit() {
-			text.text = building.buildingName;
+			text.text = building.BuildingName;
 		}
 
 		protected override void DisableInherit() {

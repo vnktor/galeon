@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using COMIRON.GameFramework.Core;
+﻿using COMIRON.GameFramework.Core;
 using COMIRON.Settings;
 using UnityEngine;
 
@@ -13,17 +11,21 @@ namespace COMIRON.Managers.ManagerBuildings {
 		}
 
 		public ControllerHouse CreateControllerHouse(Vector3 position, string name) {
-			return this.CreateController<ControllerHouse>(
-				this.settingsBuildings.GetControllerHousePrefab(name),
+			var controller = this.CreateController<ControllerHouse>(
+				this.settingsBuildings.GetControllerHousePrefab(),
 				position
 			);
+			controller.BuildingName = name;
+			return controller;
 		}
 
 		public ControllerShop CreateControllerShop(Vector3 position, string name) {
-			return this.CreateController<ControllerShop>(
-				this.settingsBuildings.GetControllerShopPrefab(name),
+			var controller = this.CreateController<ControllerShop>(
+				this.settingsBuildings.GetControllerShopPrefab(),
 				position
 			);
+			controller.BuildingName = name;
+			return controller;
 		}
 	}
 }

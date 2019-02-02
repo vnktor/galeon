@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using COMIRON.GameFramework.Core;
+﻿using COMIRON.GameFramework.Core;
 using COMIRON.Managers.ManagerBuildings;
 using UnityEngine;
 
@@ -15,16 +13,12 @@ namespace COMIRON.Settings {
 
 		}
 
-		public ControllerHouse GetControllerHousePrefab(string name) {
-			var prefab = this.controllerHousePrefab;
-			prefab.buildingName = name;
-			return prefab;
+		public ControllerHouse GetControllerHousePrefab() {
+			return this.controllerHousePrefab;
 		}
 
-		public ControllerShop GetControllerShopPrefab(string name) {
-			var prefab = this.controllerShopPrefab;
-			prefab.buildingName = name;
-			return prefab;
+		public ControllerShop GetControllerShopPrefab() {
+			return this.controllerShopPrefab;
 		}
 	}
 }
