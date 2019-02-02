@@ -4,8 +4,6 @@ using UnityEngine.UI;
 namespace RollaBoll {
 	public class Player_Controller : MonoBehaviour {
 		
-		private Rigidbody rb;
-		
 		private int count;
 		
 		public Transform player;
@@ -15,10 +13,9 @@ namespace RollaBoll {
 		public Text countText, winText;
 		
 		void Start() {
-			rb = GetComponent<Rigidbody>();
 			count = 0;
 			winText.text = "";
-			setCount ();
+			setcount ();
 		}
 		
 		private void FixedUpdate() {
@@ -30,11 +27,11 @@ namespace RollaBoll {
 			if (gold.tag == "Point") {
 			Destroy (gold.gameObject);
 			this.count++;
-			setCount();
+			setcount();
 		}
 	}
 		
-		private void setCount () {
+		private void setcount () {
 			this.countText.text = "Gold: " + count.ToString ();
 			if (this.count >= 11)
 			this.winText.text = "You Win!";
