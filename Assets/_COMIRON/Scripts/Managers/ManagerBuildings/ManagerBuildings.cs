@@ -15,7 +15,7 @@ namespace COMIRON.Managers.ManagerBuildings {
 				this.settingsBuildings.GetControllerHousePrefab(),
 				position
 			);
-			controller.BuildingName = name;
+			controller.SetBuildingName(name);
 			return controller;
 		}
 
@@ -24,7 +24,7 @@ namespace COMIRON.Managers.ManagerBuildings {
 				this.settingsBuildings.GetControllerShopPrefab(),
 				position
 			);
-			controller.BuildingName = name;
+			controller.SetBuildingName(name);
 			return controller;
 		}
 	}

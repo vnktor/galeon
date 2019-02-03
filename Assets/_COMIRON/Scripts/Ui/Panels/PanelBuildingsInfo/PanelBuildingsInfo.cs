@@ -29,7 +29,7 @@ namespace COMIRON.Ui.Panels {
 		}
 
 		protected override void EnableInherit() {
-			text.text = building.BuildingName;
+			text.text = building.GetBuildingName();
 		}
 
 		protected override void DisableInherit() {
