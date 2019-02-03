@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonClose: {fileID: 114700956169302262}
-  text: {fileID: 114147990296312910}
+  infoContainer: {fileID: 114147990296312910}
 --- !u!114 &114386709329721578
 MonoBehaviour:
   m_ObjectHideFlags: 1

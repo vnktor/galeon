@@ -10,7 +10,7 @@ namespace COMIRON.Ui.Panels {
 		[SerializeField]
 		private ButtonBase buttonClose;
 		[SerializeField]
-		private Text text;
+		private Text infoContainer;
 
 		private ControllerBuildings building;
 
@@ -29,7 +29,7 @@ namespace COMIRON.Ui.Panels {
 		}
 
 		protected override void EnableInherit() {
-			text.text = building.GetBuildingName();
+			this.infoContainer.text = building.GetBuildingName();
 		}
 
 		protected override void DisableInherit() {
