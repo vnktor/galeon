@@ -33,7 +33,6 @@ namespace COMIRON.Managers.ManagerTransport {
 				this.settingsTransport.GetControllerCar04Prefab(),
 				position
 			);
-			//controllerCar04.NameCars = nameCars04;
 			controllerCar04.SetNameCars(nameCars04);
 			return controllerCar04;
 		}

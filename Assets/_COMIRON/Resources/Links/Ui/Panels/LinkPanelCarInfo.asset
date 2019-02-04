@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ebe7457836a8c4498fb7d86da5e663, type: 3}
   m_Name: LinkPanelCarInfo
   m_EditorClassIdentifier: 
-  panel: {fileID: 114448299837737890, guid: 1ae3be3c2781c7d40a574ef485ce923a, type: 2}
+  panel: {fileID: 114455601052089150, guid: 1ae3be3c2781c7d40a574ef485ce923a, type: 2}

@@ -8,7 +8,6 @@ namespace COMIRON.Managers.ManagerTransport
 
 		private string nameCars;
 
-		//public string NameCars { get; set; }
 		public void SetNameCars(string name) {
 			this.nameCars = name;
 		}
@@ -16,7 +15,6 @@ namespace COMIRON.Managers.ManagerTransport
 		public string GetNameCars() {
 			return this.nameCars;
 		}
-
 
 		public void OnPointerClick(PointerEventData eventData) {
 			if (this.OnActionClick != null) {

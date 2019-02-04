@@ -115,8 +115,9 @@ namespace COMIRON.Scenes {
 			);
 
 			//Выводим машину в центр каждого угла
-			this.CreatCars(startPosition + new Vector3(0, 0.15f, 0) + roadAddPositionDirection * 7.62f * (length + offset));
-
+			this.CreatCars(
+				startPosition + new Vector3(0, 0.15f, 0) + roadAddPositionDirection * 7.62f * (length + offset)
+			);
 
 
 			var cornerPosition = controllerRoadCorner.transform.position;
@@ -149,28 +150,23 @@ namespace COMIRON.Scenes {
 
 		private void CreatCars(Vector3 position) {
 			var managerTransport = this.GetManager<ManagerTransport>();
-			int i= Random.Range(3, 5);
+			string id= Random.Range(0, 10).ToString()+ Random.Range(0, 10).ToString()+ Random.Range(0, 10).ToString();
 
 			ControllerCars controllerCars;
 
-			//switch (i) {
-			//	case 3:
-			//		controllerCars = managerTransport.CreateControllerCar03(position, "Car03_");
-			//		break;
-			//	case 4:
-					controllerCars = managerTransport.CreateControllerCar04(position, "Car04_" + i.ToString());
-			//		break;
-			//}
-
-			//if (controllerCars=null) {
-			//	controllerCars = managerTransport.CreateControllerCar04(position, "Car04_");
-			//}
-
-			Debug.Log(i);
-			Debug.Log(controllerCars);
+			switch (Random.Range(3, 5)) {
+				case 3:
+					controllerCars = managerTransport.CreateControllerCar03(position, "Car03_" + id);
+					break;
+				case 4:
+					controllerCars = managerTransport.CreateControllerCar04(position, "Car04_" + id);
+					break;
+				default:
+					controllerCars = managerTransport.CreateControllerCar04(position, "Car04_" + id);
+					break;
+			}
 
 			controllerCars.OnActionClick += delegate {
-				Debug.Log("Click");
 				this.ShowPanelCarInfo(controllerCars);
 			};
 		}
