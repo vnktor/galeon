@@ -8,15 +8,15 @@ namespace COMIRON.Settings {
 		private ControllerHouse controllerHousePrefab;
 		[SerializeField]
 		private ControllerShop controllerShopPrefab;
-
+		
 		protected override void AwakeInherit() {
-
+			
 		}
-
+		
 		public ControllerHouse GetControllerHousePrefab() {
 			return this.controllerHousePrefab;
 		}
-
+		
 		public ControllerShop GetControllerShopPrefab() {
 			return this.controllerShopPrefab;
 		}
