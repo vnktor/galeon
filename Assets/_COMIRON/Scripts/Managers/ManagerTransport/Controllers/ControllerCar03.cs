@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace COMIRON.Managers.ManagerTransport {
-	public class ControllerCar03 : ControllerBase {
+	public class ControllerCar03 : ControllerCars {
 
 	}
 }

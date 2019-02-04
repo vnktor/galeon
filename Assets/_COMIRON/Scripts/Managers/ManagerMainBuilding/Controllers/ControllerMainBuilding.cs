@@ -1,5 +1,4 @@
 ﻿using COMIRON.GameFramework.Core;
-using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace COMIRON.Managers.ManagerMainBuilding {

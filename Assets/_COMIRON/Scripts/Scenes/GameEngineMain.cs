@@ -80,9 +80,8 @@ namespace COMIRON.Scenes {
 
 		private RoadCreateResult CreateRoad(RoadDirection roadDirection, Vector3 startPosition, int length, int offset = 0) {
 			var managerRoads = this.GetManager<ManagerRoads>();
-			var managerTransport = this.GetManager<ManagerTransport>();
 
-			Quaternion roadRotation = Quaternion.identity;
+		Quaternion roadRotation = Quaternion.identity;
 			Vector3 roadAddPositionDirection = Vector3.zero;
 			switch (roadDirection) {
 				case RoadDirection.Up:
@@ -116,10 +115,10 @@ namespace COMIRON.Scenes {
 			);
 
 			//Выводим машину в центр каждого угла
-			managerTransport.CreateControllerCar04(
-				startPosition + new Vector3(0, 0.15f, 0) + roadAddPositionDirection * 7.62f * (length + offset)
-			);
-			
+			this.CreatCars(startPosition + new Vector3(0, 0.15f, 0) + roadAddPositionDirection * 7.62f * (length + offset));
+
+
+
 			var cornerPosition = controllerRoadCorner.transform.position;
 			return new RoadCreateResult {
 				roadFinalPosition = new Vector3(
@@ -138,7 +137,44 @@ namespace COMIRON.Scenes {
 			
 			panelMainBuildingInfo.Enable();
 		}
-		
+
+		private void ShowPanelCarInfo(ControllerCars controllerCars) {
+			var panelCarInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelCarInfo>();
+			panelCarInfo.OnActionButtonCloseClick += delegate {
+				GameObject.Destroy(panelCarInfo.gameObject);
+			};
+			panelCarInfo.SetCar(controllerCars);
+			panelCarInfo.Enable();
+		}
+
+		private void CreatCars(Vector3 position) {
+			var managerTransport = this.GetManager<ManagerTransport>();
+			int i= Random.Range(3, 5);
+
+			ControllerCars controllerCars;
+
+			//switch (i) {
+			//	case 3:
+			//		controllerCars = managerTransport.CreateControllerCar03(position, "Car03_");
+			//		break;
+			//	case 4:
+					controllerCars = managerTransport.CreateControllerCar04(position, "Car04_" + i.ToString());
+			//		break;
+			//}
+
+			//if (controllerCars=null) {
+			//	controllerCars = managerTransport.CreateControllerCar04(position, "Car04_");
+			//}
+
+			Debug.Log(i);
+			Debug.Log(controllerCars);
+
+			controllerCars.OnActionClick += delegate {
+				Debug.Log("Click");
+				this.ShowPanelCarInfo(controllerCars);
+			};
+		}
+
 		private struct RoadCreateResult {
 			public Vector3 roadFinalPosition;
 		}

@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4203088978267386}
   - component: {fileID: 114724560660158478}
+  - component: {fileID: 65090392454768062}
   m_Layer: 0
   m_Name: ControllerCar02
   m_TagString: Untagged
@@ -435,6 +436,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1911510517602138}
   m_Mesh: {fileID: 4300002, guid: a7413338589ddc743aaa4806d4c5fc0f, type: 3}
+--- !u!65 &65090392454768062
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508797272792676}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95435185902416492
 Animator:
   serializedVersion: 3
