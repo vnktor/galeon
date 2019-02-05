@@ -6,8 +6,7 @@ using UnityEngine;
 
 namespace COMIRON.Managers.ManagerClouds
 {
-	public class ManagerClouds : ManagerBase
-	{
+	public class ManagerClouds : ManagerBase {
 		private SettingsClouds settingsClouds;
 
 		protected override void AwakeInherit() {

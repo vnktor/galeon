@@ -147,12 +147,12 @@ namespace COMIRON.Scenes {
 		private void CreateClouds(Vector3 startPosition, Vector3 endPosition) {
 			var managerClouds = this.GetManager<ManagerClouds>();
 			int countCloud = Random.Range(3, 5);
-			for (int i=0; i <= countCloud-1; i++) {
-				float x = startPosition.x + (endPosition.x - startPosition.x) * i / (countCloud-1);
-				float z = startPosition.z + (endPosition.z - startPosition.z) * i / (countCloud-1);
+			for (int i = 0; i <= countCloud - 1; i++) {
+				float x = startPosition.x + (endPosition.x - startPosition.x) * i / (countCloud - 1);
+				float z = startPosition.z + (endPosition.z - startPosition.z) * i / (countCloud - 1);
 				float y = 20f;
 				Vector3 randomPosition = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), Random.Range(-3, 3));
-				managerClouds.CreateControllerCloud(new Vector3(x,y,z)+randomPosition);
+				managerClouds.CreateControllerCloud(new Vector3(x, y, z) + randomPosition);
 			}
 		}
 
