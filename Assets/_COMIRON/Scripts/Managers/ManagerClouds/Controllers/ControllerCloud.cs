@@ -6,5 +6,6 @@ using UnityEngine;
 namespace COMIRON.Managers.ManagerClouds
 {
 	public class ControllerCloud : ControllerBase {
+		
 	}
 }

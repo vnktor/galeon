@@ -9,6 +9,7 @@ public class SettingsClouds : SettingsBase {
 	private ControllerCloud controllerCloudPrefab;
 
 	protected override void AwakeInherit() {
+
 	}
 
 	public ControllerCloud GetControllerCloudPrefab() {

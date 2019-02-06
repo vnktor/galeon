@@ -14,7 +14,10 @@ namespace COMIRON.Managers.ManagerClouds
 		}
 
 		public ControllerCloud CreateControllerCloud(Vector3 position) {
-			return this.CreateController<ControllerCloud>(this.settingsClouds.GetControllerCloudPrefab(), position);
+			return this.CreateController<ControllerCloud>(
+				this.settingsClouds.GetControllerCloudPrefab(),
+				position
+			);
 		}
 	}
 }
