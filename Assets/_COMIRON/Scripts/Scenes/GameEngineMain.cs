@@ -5,6 +5,7 @@ using COMIRON.Managers.ManagerMainBuilding;
 using COMIRON.Managers.ManagerMap;
 using COMIRON.Managers.ManagerRoads;
 using COMIRON.Managers.ManagerTransport;
+using COMIRON.Managers.ManagerClouds;
 using COMIRON.Settings;
 using COMIRON.Ui;
 using COMIRON.Ui.Panels;
@@ -35,15 +36,18 @@ namespace COMIRON.Scenes {
 			}
 
 			var roadCreateResult = this.CreateRoad(RoadDirection.Up, groundStartPosition + new Vector3(40, 0.1f, 30), 5);
+			Vector3 startCloudPosition = roadCreateResult.roadFinalPosition;
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
 			roadCreateResult = this.CreateRoad(RoadDirection.Right, roadCreateResult.roadFinalPosition, 5, 1);
+			Vector3 endCloudPosition = roadCreateResult.roadFinalPosition;
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
 			roadCreateResult = this.CreateRoad(RoadDirection.Down, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
 			roadCreateResult = this.CreateRoad(RoadDirection.Left, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
-			
-			
+
+			this.CreateClouds(startCloudPosition, endCloudPosition);
+
 			var controllerMainBuilding = managerMainBuilding.CreateControllerMainBuilding(groundStartPosition + new Vector3((groundCols - 1) / 2f * groundWidth, 0, (groundRows / 2f - 1) * groundLength));
 			controllerMainBuilding.OnActionClick += delegate {
 				this.ShowPanelMainBuildingInfo();
@@ -134,7 +138,7 @@ namespace COMIRON.Scenes {
 				),
 			};
 		}
-		
+
 		private void ShowPanelMainBuildingInfo() {
 			var panelMainBuildingInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelMainBuildingInfo>();
 			panelMainBuildingInfo.OnActionButtonCloseClick += delegate {
@@ -144,6 +148,7 @@ namespace COMIRON.Scenes {
 			panelMainBuildingInfo.Enable();
 		}
 
+
 		private void ShowPanelBuildingsInfo(ControllerBuildings obj) {
 			var panelInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelBuildingsInfo>();
 			panelInfo.OnActionButtonCloseClick += delegate {
@@ -151,6 +156,22 @@ namespace COMIRON.Scenes {
 			};
 			panelInfo.SetBuilding(obj);
 			panelInfo.Enable();
+
+		private void CreateClouds(Vector3 startPosition, Vector3 endPosition) {
+			var managerClouds = this.GetManager<ManagerClouds>();
+			int countCloud = Random.Range(3, 5);
+			
+			for (int i = 0; i <= countCloud - 1; i++) {
+				float x = startPosition.x + (endPosition.x - startPosition.x) * i / (countCloud - 1);
+				float z = startPosition.z + (endPosition.z - startPosition.z) * i / (countCloud - 1);
+				float y = 20f;
+				Vector3 randomPosition = new Vector3(
+					Random.Range(-3, 3),
+					Random.Range(-3, 3),
+					Random.Range(-3, 3)
+				);
+				managerClouds.CreateControllerCloud(new Vector3(x, y, z) + randomPosition);
+			}
 		}
 
 		private struct RoadCreateResult {
