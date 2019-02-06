@@ -116,7 +116,7 @@ namespace COMIRON.Scenes {
 
 			//Выводим машину в центр каждого угла
 			this.CreatCars(
-				startPosition + new Vector3(0, 0.15f, 0) + roadAddPositionDirection * 7.62f * (length + offset)
+				startPosition + new Vector3(0, 0.26f, 0) + roadAddPositionDirection * 7.62f * (length + offset)
 			);
 
 
@@ -154,7 +154,10 @@ namespace COMIRON.Scenes {
 
 			ControllerCars controllerCars;
 
-			switch (Random.Range(3, 5)) {
+			switch (Random.Range(2, 5)) {
+				case 2:
+					controllerCars = managerTransport.CreateControllerCar02(position, "Car02_" + id);
+					break;
 				case 3:
 					controllerCars = managerTransport.CreateControllerCar03(position, "Car03_" + id);
 					break;

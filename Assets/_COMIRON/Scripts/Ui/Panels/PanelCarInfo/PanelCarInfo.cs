@@ -3,10 +3,8 @@ using COMIRON.Managers.ManagerTransport;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace COMIRON.Ui.Panels
-{
-	public class PanelCarInfo : PanelBase
-	{
+namespace COMIRON.Ui.Panels {
+	public class PanelCarInfo : PanelBase {
 		public event System.Action OnActionButtonCloseClick;
 
 		[SerializeField]
