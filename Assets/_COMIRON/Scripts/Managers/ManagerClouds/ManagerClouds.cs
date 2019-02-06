@@ -4,8 +4,7 @@ using COMIRON.GameFramework.Core;
 using COMIRON.Settings;
 using UnityEngine;
 
-namespace COMIRON.Managers.ManagerClouds
-{
+namespace COMIRON.Managers.ManagerClouds {
 	public class ManagerClouds : ManagerBase {
 		private SettingsClouds settingsClouds;
 

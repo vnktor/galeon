@@ -157,8 +157,20 @@ namespace COMIRON.Scenes {
 					Random.Range(-3, 3),
 					Random.Range(-3, 3)
 				);
-				managerClouds.CreateControllerCloud(new Vector3(x, y, z) + randomPosition);
+				var controllerCloud = managerClouds.CreateControllerCloud(new Vector3(x, y, z) + randomPosition);
+				controllerCloud.OnActionClick += delegate {
+					this.ShowPanelCloudInfo();
+				};
 			}
+		}
+
+		private void ShowPanelCloudInfo() {
+			var panelCloudInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelCloudInfo>();
+			panelCloudInfo.OnActionButtonCloseClick += delegate {
+				GameObject.Destroy(panelCloudInfo.gameObject);
+			};
+
+			panelCloudInfo.Enable();
 		}
 
 		private struct RoadCreateResult {
