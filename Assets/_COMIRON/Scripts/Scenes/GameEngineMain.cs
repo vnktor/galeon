@@ -152,10 +152,11 @@ namespace COMIRON.Scenes {
 		private void ShowPanelBuildingsInfo(ControllerBuildings obj) {
 			var panelInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelBuildingsInfo>();
 			panelInfo.OnActionButtonCloseClick += delegate {
-				GameObject.Destroy(panelInfo.gameObject);
+				 GameObject.Destroy(panelInfo.gameObject);
 			};
 			panelInfo.SetBuilding(obj);
-			panelInfo.Enable();
+			 panelInfo.Enable();
+		}
 
 		private void CreateClouds(Vector3 startPosition, Vector3 endPosition) {
 			var managerClouds = this.GetManager<ManagerClouds>();
