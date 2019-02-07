@@ -39,6 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4305273770931056}
   - component: {fileID: 114167859272429796}
+  - component: {fileID: 65656764874589798}
   m_Layer: 0
   m_Name: ControllerHouse
   m_TagString: Untagged
@@ -129,6 +130,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 1b8267bcdc84e35419dda6ee1fda06ee, type: 3}
+--- !u!65 &65656764874589798
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890554179419104}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.59, y: 18.63, z: 6.42}
+  m_Center: {x: 0, y: 9.4, z: 0}
 --- !u!95 &95103533874590812
 Animator:
   serializedVersion: 3
@@ -158,3 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de9364d1db9b7a43ae8bddf3be01d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingName: house95

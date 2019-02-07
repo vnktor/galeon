@@ -1,9 +1,11 @@
 ﻿using COMIRON.GameFramework.Core;
+using COMIRON.GameFramework.Ui;
 using COMIRON.Managers.ManagerBuildings;
 using COMIRON.Managers.ManagerMainBuilding;
 using COMIRON.Managers.ManagerMap;
 using COMIRON.Managers.ManagerRoads;
 using COMIRON.Managers.ManagerTransport;
+using COMIRON.Managers.ManagerClouds;
 using COMIRON.Settings;
 using COMIRON.Ui;
 using COMIRON.Ui.Panels;
@@ -34,14 +36,18 @@ namespace COMIRON.Scenes {
 			}
 
 			var roadCreateResult = this.CreateRoad(RoadDirection.Up, groundStartPosition + new Vector3(40, 0.1f, 30), 5);
+			Vector3 startCloudPosition = roadCreateResult.roadFinalPosition;
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
 			roadCreateResult = this.CreateRoad(RoadDirection.Right, roadCreateResult.roadFinalPosition, 5, 1);
+			Vector3 endCloudPosition = roadCreateResult.roadFinalPosition;
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
 			roadCreateResult = this.CreateRoad(RoadDirection.Down, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
 			roadCreateResult = this.CreateRoad(RoadDirection.Left, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
-			
+
+			this.CreateClouds(startCloudPosition, endCloudPosition);
+
 			var controllerMainBuilding = managerMainBuilding.CreateControllerMainBuilding(groundStartPosition + new Vector3((groundCols - 1) / 2f * groundWidth, 0, (groundRows / 2f - 1) * groundLength));
 			controllerMainBuilding.OnActionClick += delegate {
 				this.ShowPanelMainBuildingInfo();
@@ -60,28 +66,31 @@ namespace COMIRON.Scenes {
 			var managerBuildings = this.GetManager<ManagerBuildings>();
 
 			Quaternion buildingQuaternion;
-			ControllerBase controller;
+			ControllerBuildings controller;
 			switch (directionBuilding) {
 				case Direction.Left:
 					buildingQuaternion = Quaternion.Euler(0, -90, 0);
-					controller = managerBuildings.CreateControllerHouse(position + new Vector3(10, 0, 0));
+					controller = managerBuildings.CreateControllerHouse(position + new Vector3(10, 0, 0), "house" + Random.Range(1, 100).ToString());
 					break;
 				case Direction.Right:
 					buildingQuaternion = Quaternion.Euler(0, 90, 0);
-					controller = managerBuildings.CreateControllerShop(position + new Vector3(-10, 0, 0));
+					controller = managerBuildings.CreateControllerShop(position + new Vector3(-10, 0, 0), "shop" + Random.Range(1, 100).ToString());
 					break;
 				default:
 					buildingQuaternion = Quaternion.Euler(0, -90, 0);
-					controller = managerBuildings.CreateControllerHouse(position + new Vector3(10, 0, 0));
+					controller = managerBuildings.CreateControllerHouse(position + new Vector3(10, 0, 0), "house" + Random.Range(1, 100).ToString());
 					break;
 			}
 			controller.transform.localRotation = buildingQuaternion;
+			controller.OnActionClick += delegate {
+				this.ShowPanelBuildingsInfo(controller);
+			};
 		}
 
 		private RoadCreateResult CreateRoad(RoadDirection roadDirection, Vector3 startPosition, int length, int offset = 0) {
 			var managerRoads = this.GetManager<ManagerRoads>();
 
-		Quaternion roadRotation = Quaternion.identity;
+			Quaternion roadRotation = Quaternion.identity;
 			Vector3 roadAddPositionDirection = Vector3.zero;
 			switch (roadDirection) {
 				case RoadDirection.Up:
@@ -129,7 +138,7 @@ namespace COMIRON.Scenes {
 				),
 			};
 		}
-		
+
 		private void ShowPanelMainBuildingInfo() {
 			var panelMainBuildingInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelMainBuildingInfo>();
 			panelMainBuildingInfo.OnActionButtonCloseClick += delegate {
@@ -174,9 +183,39 @@ namespace COMIRON.Scenes {
 			};
 		}
 
+
+
+		private void ShowPanelBuildingsInfo(ControllerBuildings obj) {
+			var panelInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelBuildingsInfo>();
+			panelInfo.OnActionButtonCloseClick += delegate {
+				 GameObject.Destroy(panelInfo.gameObject);
+			};
+			panelInfo.SetBuilding(obj);
+			 panelInfo.Enable();
+		}
+
+		private void CreateClouds(Vector3 startPosition, Vector3 endPosition) {
+			var managerClouds = this.GetManager<ManagerClouds>();
+			int countCloud = Random.Range(3, 5);
+			
+			for (int i = 0; i <= countCloud - 1; i++) {
+				float x = startPosition.x + (endPosition.x - startPosition.x) * i / (countCloud - 1);
+				float z = startPosition.z + (endPosition.z - startPosition.z) * i / (countCloud - 1);
+				float y = 20f;
+				Vector3 randomPosition = new Vector3(
+					Random.Range(-3, 3),
+					Random.Range(-3, 3),
+					Random.Range(-3, 3)
+				);
+				managerClouds.CreateControllerCloud(new Vector3(x, y, z) + randomPosition);
+			}
+		}
+
 		private struct RoadCreateResult {
 			public Vector3 roadFinalPosition;
 		}
+
+
 		
 		private enum RoadDirection {
 			Up,
