@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-guid: 9920e840b9aa54b4dba5d5cd5cb7ee60
+guid: 36fbcbdab274e3e42b8951bfce380595
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - controllerHousePrefab: {fileID: 114167859272429796, guid: 46fa13456e6010d4ca54a3b540b24658,
-      type: 2}
-  - controllerShopPrefab: {fileID: 114180846495910456, guid: f42ab9422fd20d74cb89c3338acfbbc8,
-      type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

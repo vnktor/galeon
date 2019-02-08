@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9920e840b9aa54b4dba5d5cd5cb7ee60, type: 3}
+  m_Name: SettingsBuildings
+  m_EditorClassIdentifier: 
+  controllerHousePrefab: {fileID: 114167859272429796, guid: 46fa13456e6010d4ca54a3b540b24658,
+    type: 2}
+  controllerShopPrefab: {fileID: 114180846495910456, guid: f42ab9422fd20d74cb89c3338acfbbc8,
+    type: 2}

@@ -1,29 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using COMIRON.GameFramework.Core;
+﻿using COMIRON.GameFramework.Core;
 using COMIRON.Settings;
 using UnityEngine;
 
-namespace COMIRON.Managers.ManagerTrees{
-	public class ManagerTrees : ManagerBase{
+namespace COMIRON.Managers.ManagerTrees {
+	public class ManagerTrees : ManagerBase {
 		private SettingsTrees settingsTrees;
 
-		protected override void AwakeInherit(){
+		protected override void AwakeInherit() {
 			this.settingsTrees = this.GetSettings<SettingsTrees>();
 		}
 
-		public ControllerCtree CreateControllerCtree(Vector3 position){
-			return this.CreateController<ControllerCtree>(
-				this.settingsTrees.GetControllerCtreePrefab(),
+		public ControllerTree01 CreateControllerTree01(Vector3 position) {
+			return this.CreateController<ControllerTree01>(
+				this.settingsTrees.GetControllerTree01Prefab(),
 				position
 			);
 		}
 
-		public ControllerLtree CreateControllerLtree(Vector3 position){
-			return this.CreateController<ControllerLtree>(
-				this.settingsTrees.GetControllerLtreePrefab(),
+		public ControllerTree02 CreateControllerTree02(Vector3 position) {
+			return this.CreateController<ControllerTree02>(
+				this.settingsTrees.GetControllerTree02Prefab(),
 				position
 			);
-		}
+		}	
 	}
 }

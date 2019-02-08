@@ -8,8 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9920e840b9aa54b4dba5d5cd5cb7ee60, type: 3}
-  m_Name: SettingsTrees
+  m_Script: {fileID: 11500000, guid: 7ccadd3ac00f58c49a5984ef40e9af5b, type: 3}
+  m_Name: SettingsMainBuilding
   m_EditorClassIdentifier: 
-  controllerCtreePrefab: {fileID: 0}
-  controllerLtreePrefab: {fileID: 0}
+  controllerMainBuilding: {fileID: 114889195433101432, guid: c6e38df0f203e074f8b0205029dfad4e,
+    type: 2}

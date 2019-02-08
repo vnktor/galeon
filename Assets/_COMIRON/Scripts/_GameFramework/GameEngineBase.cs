@@ -1,15 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using COMIRON.GameFramework.Links;
+using COMIRON.GameFramework.Ui;
 using UnityEngine;
 
 namespace COMIRON.GameFramework.Core {
 	public abstract class GameEngineBase : MonoBehaviour {
+		[SerializeField]
+		private Transform[] canvasesContainers;
+		
 		private List<ManagerBase> managersList;
 		private List<SettingsBase> settingsLoaded;
+		private List<CanvasBase> canvasesList;
 		
 		private void Awake() {
 			this.managersList = new List<ManagerBase>();
 			this.settingsLoaded = new List<SettingsBase>();
+			
+			this.canvasesList = new List<CanvasBase>();
+			for (int i = 0; i < canvasesContainers.Length; i++) {
+				CanvasBase[] canvasBase = canvasesContainers[i].GetComponentsInChildren<CanvasBase>(false);
+				var count = canvasBase.Length;
+				for (int j = 0; j < count; j++) {
+					this.canvasesList.Add(canvasBase[j]);
+				}
+			}
+			
+			for (int i = 0; i < this.canvasesList.Count; i++) {
+				var canvas = this.canvasesList[i];
+				canvas.Initialize(this);
+			}
 			
 			this.AwakeInherit();
 		}
@@ -18,7 +38,7 @@ namespace COMIRON.GameFramework.Core {
 		protected abstract void Update();
 		protected abstract void FixedUpdate();
 		
-		protected T GetManager<T>() where T : ManagerBase {
+		public T GetManager<T>() where T : ManagerBase {
 			// Check if the class already created.
 			foreach (var m in this.managersList) {
 				if (m is T) {
@@ -33,6 +53,26 @@ namespace COMIRON.GameFramework.Core {
 			instance.Awake(this);
 			
 			return (T) instance;
+		}
+		
+		private string GetLinkPanelPath(System.Type typeOf) {
+			string path = "Links/Ui/Panels/Link" + typeOf.Name;
+			
+			return path;
+		}
+		
+		public LinkPanel GetLinkPanel<T>() where T : PanelBase {
+			var typeOf = typeof(T);
+			string path = this.GetLinkPanelPath(typeOf);
+			
+			LinkPanel linkPanel = Resources.Load<LinkPanel>(path);
+			if (linkPanel == null) {
+				Debug.LogWarning("GetLinkPanel. FILE ABSENT, " + ("filePath: " + path) + ("  type: " + typeOf) + "\r\n");
+				
+				return null;
+			}
+			
+			return linkPanel;
 		}
 		
 		public T GetSettings<T>() where T : SettingsBase {
@@ -50,6 +90,18 @@ namespace COMIRON.GameFramework.Core {
 			instance.Awake();
 			
 			return (T) instance;
+		}
+		
+		protected T GetCanvasByClass<T>() where T : CanvasBase {
+			var count = this.canvasesList.Count;
+			for (int i = 0; i < count; i++) {
+				var canvas = this.canvasesList[i];
+				if (canvas is T) {
+					return (T) Convert.ChangeType(canvas, typeof (T));
+				}
+			}
+			
+			return default(T);
 		}
 	}
 }

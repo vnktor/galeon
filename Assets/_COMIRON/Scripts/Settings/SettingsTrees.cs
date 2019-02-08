@@ -1,26 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using COMIRON.GameFramework.Core;
+﻿using COMIRON.GameFramework.Core;
 using COMIRON.Managers.ManagerTrees;
 using UnityEngine;
 
-namespace COMIRON.Settings{
-	public class SettingsTrees : SettingsBase{
+namespace COMIRON.Settings {
+	public class SettingsTrees : SettingsBase
+	{
 		[SerializeField]
-		private ControllerCtree controllerCtreePrefab;
+		private ControllerTree01 controllerTree01Prefab;
 		[SerializeField]
-		private ControllerLtree controllerLtreePrefab;
+		private ControllerTree02 controllerTree02Prefab;
 
-		protected override void AwakeInherit(){
+		protected override void AwakeInherit() {
 
 		}
 
-		public ControllerCtree GetControllerCtreePrefab(){
-			return this.controllerCtreePrefab;
+		public ControllerTree01 GetControllerTree01Prefab() {
+			return this.controllerTree01Prefab;
 		}
 
-		public ControllerLtree GetControllerLtreePrefab(){
-			return this.controllerLtreePrefab;
+		public ControllerTree02 GetControllerTree02Prefab() {
+			return this.controllerTree02Prefab;
 		}
 	}
 }
