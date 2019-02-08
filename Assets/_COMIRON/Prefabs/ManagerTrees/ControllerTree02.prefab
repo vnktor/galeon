@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4064852751516308}
   - component: {fileID: 33062599042599912}
   - component: {fileID: 23733153159921812}
+  - component: {fileID: 114921607390346888}
   m_Layer: 0
   m_Name: ControllerTree02
   m_TagString: Untagged
@@ -83,3 +84,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065039014509284}
   m_Mesh: {fileID: 4300000, guid: 848eec9d24058c345a0700e920af1097, type: 3}
+--- !u!114 &114921607390346888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1065039014509284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd11e31eaa622c9498b6b3f71c730297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
