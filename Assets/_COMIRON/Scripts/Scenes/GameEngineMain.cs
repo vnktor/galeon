@@ -10,6 +10,7 @@ using COMIRON.Ui;
 using COMIRON.Ui.Panels;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 namespace COMIRON.Scenes {
 	public class GameEngineMain : GameEngineBase {
@@ -17,6 +18,11 @@ namespace COMIRON.Scenes {
 		private Camera cameraMain;
 		[SerializeField]
 		private EventSystem hashEventSystem;
+
+		private int countFrame = 0;
+
+		private List<GameObject>  destroyObject = new List<GameObject>();
+		
 		
 		protected override void AwakeInherit() {
 			var managerMap = this.GetManager<ManagerMap>();
@@ -47,14 +53,42 @@ namespace COMIRON.Scenes {
 
 			this.CreateClouds(startCloudPosition, endCloudPosition);
 
+
+			this.GetCreatedCloudsInfo(destroyObject);
+
+			var managerClouds = this.GetManager<ManagerClouds>();
+			var objects = managerClouds.GetCreatedControllerCloud(destroyObject);
+			this.DestroyObjectMy(objects[0].gameObject);
+			Debug.Log(" Удалили облако 1");
+
+			this.GetCreatedCloudsInfo(destroyObject);
+
+			
+
+
 			var controllerMainBuilding = managerMainBuilding.CreateControllerMainBuilding(groundStartPosition + new Vector3((groundCols - 1) / 2f * groundWidth, 0, (groundRows / 2f - 1) * groundLength));
 			controllerMainBuilding.OnActionClick += delegate {
 				this.ShowPanelMainBuildingInfo();
 			};
 		}
-		
+
+
 		protected override void Update() {
-			
+			if (countFrame < 5) {
+				countFrame++;
+			}
+
+			if (countFrame == 1 || countFrame == 3) {
+				this.GetCreatedCloudsInfo();
+			}
+
+			if (countFrame == 2) {
+				var managerClouds = this.GetManager<ManagerClouds>();
+				var objects = managerClouds.GetCreatedControllerCloud();
+				this.DestroyObjectMy(objects[1].gameObject);
+				Debug.Log(" Удалили облако 2");
+			}
+
 		}
 		
 		protected override void FixedUpdate() {
@@ -82,6 +116,13 @@ namespace COMIRON.Scenes {
 			}
 			controller.transform.localRotation = buildingQuaternion;
 		}
+
+
+		void DestroyObjectMy(GameObject obj) {
+			Object.Destroy(obj);
+			destroyObject.Add(obj);
+		}
+
 
 		private RoadCreateResult CreateRoad(RoadDirection roadDirection, Vector3 startPosition, int length, int offset = 0) {
 			var managerRoads = this.GetManager<ManagerRoads>();
@@ -171,6 +212,27 @@ namespace COMIRON.Scenes {
 			};
 
 			panelCloudInfo.Enable();
+		}
+
+		private void GetCreatedCloudsInfo(List<GameObject> dObject=null) {
+			string message = "";
+			var managerClouds = this.GetManager<ManagerClouds>();
+			var objects = managerClouds.GetCreatedControllerCloud(dObject);
+			message += " Облаков : " + objects.Length.ToString() + " шт\n";
+			
+			for (int i = 0; i < objects.Length; i++) {
+					message += " Облако №"
+						+ (i + 1).ToString()
+						+ " координаты ("
+						+ objects[i].transform.position.x.ToString()
+						+ ","
+						+ objects[i].transform.position.y.ToString()
+						+ ","
+						+ objects[i].transform.position.z.ToString()
+						+ ")\n";
+				}
+			Debug.Log(message);
+
 		}
 
 		private struct RoadCreateResult {
