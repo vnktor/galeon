@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114433327521529644}
   - component: {fileID: 65349844587638604}
   m_Layer: 0
-  m_Name: ControllerCloud
+  m_Name: Cloud_86c9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

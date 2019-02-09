@@ -19,8 +19,8 @@ namespace COMIRON.Managers.ManagerClouds {
 			);
 		}
 
-		public ControllerCloud[] GetCreatedControllerCloud(List<GameObject> dObject = null) {
-			return this.GetCreatedObjects<ControllerCloud>(dObject);
+		public ControllerCloud[] GetCreatedControllerCloud() {
+			return this.GetCreatedObjects<ControllerCloud>();
 		}
 	}
 }
