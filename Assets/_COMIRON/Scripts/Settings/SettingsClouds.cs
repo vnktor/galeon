@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using COMIRON.GameFramework.Core;
 using COMIRON.Managers.ManagerClouds;
@@ -14,7 +13,6 @@ public class SettingsClouds : SettingsBase {
 	}
 
 	public ControllerCloud GetControllerCloudPrefab() {
-		this.controllerCloudPrefab.name = "Cloud_" + Guid.NewGuid().ToString().Substring(1,4);
 		return this.controllerCloudPrefab;
 	}
 }
