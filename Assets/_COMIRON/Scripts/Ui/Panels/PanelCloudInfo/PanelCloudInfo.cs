@@ -12,8 +12,6 @@ namespace COMIRON.Ui.Panels {
 		[SerializeField]
 		private Text textPanelCloudInfo;
 
-		private string infoMessage;
-
 		protected override void InitializeInherit() {
 			this.buttonClose.OnActionClick += delegate {
 				if (this.OnActionButtonCloseClick != null) {
@@ -24,7 +22,7 @@ namespace COMIRON.Ui.Panels {
 		}
 
 		protected override void EnableInherit() {
-			this.textPanelCloudInfo.GetComponent<Text>().text = this.infoMessage;
+
 		}
 
 		protected override void DisableInherit() {
@@ -32,7 +30,7 @@ namespace COMIRON.Ui.Panels {
 		}
 
 		public void SetInfoMessage(string messageText) {
-			this.infoMessage = messageText;
+			this.textPanelCloudInfo.GetComponent<Text>().text = messageText;
 		}
 
 	}
