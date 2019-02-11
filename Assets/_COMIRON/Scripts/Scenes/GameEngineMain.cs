@@ -169,7 +169,7 @@ namespace COMIRON.Scenes {
 
 		private void ShowPanelCloudInfo(string cloudName) {
 			var panelCloudInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelCloudInfo>();
-			panelCloudInfo.infoMessage = cloudName;
+			panelCloudInfo.SetInfoMessage(cloudName);
 			panelCloudInfo.OnActionButtonCloseClick += delegate {
 				GameObject.Destroy(panelCloudInfo.gameObject);
 			};
