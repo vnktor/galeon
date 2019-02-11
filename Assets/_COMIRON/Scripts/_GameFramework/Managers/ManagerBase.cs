@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections.Generic;
 using System;
 
@@ -41,7 +42,8 @@ namespace COMIRON.GameFramework.Core {
 			List<T> listController = new List<T>();
 			foreach (T controller in this.controllerList) {
 				if(typeof(T)==controller.GetType()) {
-					if (GameObject.Find(controller.name)) {
+					var id = controller.gameObject.GetInstanceID();
+					if ((GameObject)EditorUtility.InstanceIDToObject(id)) {
 						listController.Add(controller);
 					}
 				}
