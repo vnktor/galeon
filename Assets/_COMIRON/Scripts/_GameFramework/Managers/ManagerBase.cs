@@ -40,11 +40,11 @@ namespace COMIRON.GameFramework.Core {
 
 		protected T[] GetCreatedObjects<T>() where T : ControllerBase {
 			List<T> listController = new List<T>();
-			foreach (T controller in this.controllerList) {
-				if(typeof(T)==controller.GetType()) {
+			foreach (var controller in this.controllerList) {
+				if(controller is T) {
 					var id = controller.gameObject.GetInstanceID();
 					if ((GameObject)EditorUtility.InstanceIDToObject(id)) {
-						listController.Add(controller);
+						listController.Add((T)Convert.ChangeType(controller, typeof(T)));
 					}
 				}
 			}
