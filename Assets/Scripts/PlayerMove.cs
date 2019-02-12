@@ -2,7 +2,8 @@
 
 namespace RollaBall {
 	public class PlayerMove : MonoBehaviour {
-		public float speed;
+		[SerializeField]
+		private float speed;
 		
 		private Rigidbody rb;
 		
@@ -10,7 +11,7 @@ namespace RollaBall {
 			this.rb = GetComponent<Rigidbody>();
 		}
 		
-		private void FixedUpdate() {
+		public void FixedUpdate() {
 			float moveHorizontal = Input.GetAxis("Horizontal");
 			float moveVertical = Input.GetAxis("Vertical");
 			
