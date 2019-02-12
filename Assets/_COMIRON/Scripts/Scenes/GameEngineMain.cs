@@ -92,11 +92,11 @@ namespace COMIRON.Scenes {
 			switch (directionTrees) {
 				case Direction.Left:
 					treesQuaternion = Quaternion.Euler(0, -90, 0);
-					controller = managerTrees.CreateControllerTree01(position + new Vector3(30, 0, 0));
+					controller = managerTrees.CreateControllerTree01(position + new Vector3(0, 0, 0));
 					break;
 				case Direction.Right:
 					treesQuaternion = Quaternion.Euler(0, 90, 0);
-					controller = managerTrees.CreateControllerTree02(position + new Vector3(-30, 0, 0));
+					controller = managerTrees.CreateControllerTree02(position + new Vector3(0, 0, 0));
 					break;
 				default:
 					treesQuaternion = Quaternion.Euler(0, -90, 0);
