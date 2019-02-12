@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
 using System;
 
@@ -32,18 +31,18 @@ namespace COMIRON.GameFramework.Core {
 				Quaternion.identity,
 				this.container
 			).GetComponent<T>();
-
 			controllerList.Add(newControllerBase);
 
 			return newControllerBase;
 		}
 
+		
+
 		protected T[] GetCreatedObjects<T>() where T : ControllerBase {
 			List<T> listController = new List<T>();
 			foreach (var controller in this.controllerList) {
 				if(controller is T) {
-					var id = controller.gameObject.GetInstanceID();
-					if ((GameObject)EditorUtility.InstanceIDToObject(id)) {
+					if (controller.enabled) {
 						listController.Add((T)Convert.ChangeType(controller, typeof(T)));
 					}
 				}
