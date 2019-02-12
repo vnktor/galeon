@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using COMIRON.GameFramework.Core;
 using COMIRON.Settings;
 using UnityEngine;
+using System;
 
-namespace COMIRON.Managers.ManagerClouds
-{
+namespace COMIRON.Managers.ManagerClouds {
 	public class ManagerClouds : ManagerBase {
 		private SettingsClouds settingsClouds;
 
@@ -14,10 +14,17 @@ namespace COMIRON.Managers.ManagerClouds
 		}
 
 		public ControllerCloud CreateControllerCloud(Vector3 position) {
-			return this.CreateController<ControllerCloud>(
+			ControllerCloud newControllerCloud = this.CreateController<ControllerCloud>(
 				this.settingsClouds.GetControllerCloudPrefab(),
 				position
 			);
+			
+			newControllerCloud.name = "Cloud_" + Guid.NewGuid().ToString().Substring(1, 4);
+			return newControllerCloud;
+		}
+
+		public ControllerCloud[] GetCreatedControllerCloud() {
+			return this.GetCreatedObjects<ControllerCloud>();
 		}
 	}
 }

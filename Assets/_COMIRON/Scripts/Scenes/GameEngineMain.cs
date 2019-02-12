@@ -11,6 +11,7 @@ using COMIRON.Ui;
 using COMIRON.Ui.Panels;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 namespace COMIRON.Scenes {
 	public class GameEngineMain : GameEngineBase {
@@ -18,7 +19,7 @@ namespace COMIRON.Scenes {
 		private Camera cameraMain;
 		[SerializeField]
 		private EventSystem hashEventSystem;
-		
+
 		protected override void AwakeInherit() {
 			var managerMap = this.GetManager<ManagerMap>();
 			var managerMainBuilding = this.GetManager<ManagerMainBuilding>();
@@ -53,9 +54,10 @@ namespace COMIRON.Scenes {
 				this.ShowPanelMainBuildingInfo();
 			};
 		}
-		
+
+
 		protected override void Update() {
-			
+
 		}
 		
 		protected override void FixedUpdate() {
@@ -207,9 +209,24 @@ namespace COMIRON.Scenes {
 					Random.Range(-3, 3),
 					Random.Range(-3, 3)
 				);
-				managerClouds.CreateControllerCloud(new Vector3(x, y, z) + randomPosition);
+				var controllerCloud = managerClouds.CreateControllerCloud(new Vector3(x, y, z) + randomPosition);
+				controllerCloud.OnActionClick += delegate {
+					this.ShowPanelCloudInfo(controllerCloud.name);
+					controllerCloud.name = controllerCloud.ToString() + (i + 1).ToString();
+				};
 			}
 		}
+
+		private void ShowPanelCloudInfo(string cloudName) {
+			var panelCloudInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelCloudInfo>();
+			panelCloudInfo.SetInfoMessage(cloudName);
+			panelCloudInfo.OnActionButtonCloseClick += delegate {
+				GameObject.Destroy(panelCloudInfo.gameObject);
+			};
+
+			panelCloudInfo.Enable();
+		}
+
 
 		private struct RoadCreateResult {
 			public Vector3 roadFinalPosition;
