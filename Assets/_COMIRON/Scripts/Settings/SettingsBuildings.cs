@@ -20,5 +20,19 @@ namespace COMIRON.Settings {
 		public ControllerShop GetControllerShopPrefab() {
 			return this.controllerShopPrefab;
 		}
+
+		public string LoadControllerName(string slotName) {
+			return this.GetPref<string>(Buildings.All, null, slotName);
+		}
+
+		public void SaveControllerName(string name, string slotName) {
+			this.SetPref(Buildings.All, name, slotName);
+		}
+
+		enum Buildings {
+			All,
+			House,
+			Shop
+		}
 	}
 }
