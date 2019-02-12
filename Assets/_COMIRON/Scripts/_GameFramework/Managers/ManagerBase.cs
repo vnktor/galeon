@@ -31,7 +31,7 @@ namespace COMIRON.GameFramework.Core {
 				Quaternion.identity,
 				this.container
 			).GetComponent<T>();
-			controllerList.Add(newControllerBase);
+			this.controllerList.Add(newControllerBase);
 
 			return newControllerBase;
 		}
