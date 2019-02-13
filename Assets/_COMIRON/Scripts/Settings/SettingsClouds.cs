@@ -19,7 +19,7 @@ public class SettingsClouds : SettingsBase {
 	public string GetCloudName(string slot) {
 		return this.GetPref<string>(Clouds.Name, null, slot);
 	}
-	   
+
 	public void SetCloudName(string name, string slot) {
 		this.SetPref(Clouds.Name, name, slot);
 	}
