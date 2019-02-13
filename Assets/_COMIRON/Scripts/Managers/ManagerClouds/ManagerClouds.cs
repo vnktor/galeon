@@ -9,6 +9,8 @@ namespace COMIRON.Managers.ManagerClouds {
 	public class ManagerClouds : ManagerBase {
 		private SettingsClouds settingsClouds;
 
+		private int number = 0;
+
 		protected override void AwakeInherit() {
 			this.settingsClouds = this.GetSettings<SettingsClouds>();
 		}
@@ -18,13 +20,24 @@ namespace COMIRON.Managers.ManagerClouds {
 				this.settingsClouds.GetControllerCloudPrefab(),
 				position
 			);
-			
-			newControllerCloud.name = "Cloud_" + Guid.NewGuid().ToString().Substring(1, 4);
+			this.number++;
+			string nameCloud = this.settingsClouds.GetCloudName((this.number).ToString());
+			if (nameCloud == null) {
+				newControllerCloud.name = "Cloud_" + Guid.NewGuid().ToString().Substring(1, 4);
+				this.settingsClouds.SetCloudName(newControllerCloud.name, (this.number).ToString());
+			}
+			else {
+				newControllerCloud.name = nameCloud;
+			}
 			return newControllerCloud;
 		}
 
 		public ControllerCloud[] GetCreatedControllerCloud() {
 			return this.GetCreatedObjects<ControllerCloud>();
 		}
+
+	
+	
+		
 	}
 }
