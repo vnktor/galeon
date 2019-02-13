@@ -17,7 +17,7 @@ namespace COMIRON.Managers.ManagerBuildings {
 				this.settingsBuildings.GetControllerHousePrefab(),
 				position
 			);
-			controller.SetBuildingName(GetControllerName(name));
+			controller.SetBuildingName(this.GetControllerName(name));
 			return controller;
 		}
 
@@ -26,17 +26,17 @@ namespace COMIRON.Managers.ManagerBuildings {
 				this.settingsBuildings.GetControllerShopPrefab(),
 				position
 			);
-			controller.SetBuildingName(GetControllerName(name));
+			controller.SetBuildingName(this.GetControllerName(name));
 			return controller;
 		}
 
 		private string GetControllerName(string newName) {
-			var name = settingsBuildings.LoadControllerName(controllerCounter.ToString());
+			var name = this.settingsBuildings.LoadControllerName(this.controllerCounter.ToString());
 			if (name == null) {
-				settingsBuildings.SaveControllerName(newName, controllerCounter.ToString());
+				this.settingsBuildings.SaveControllerName(newName, this.controllerCounter.ToString());
 				name = newName;
 			}
-			controllerCounter++;
+			this.controllerCounter++;
 			return name;
 		}
 	}
