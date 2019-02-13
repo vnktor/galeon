@@ -8,10 +8,6 @@ public class SettingsClouds : SettingsBase {
 	[SerializeField]
 	private ControllerCloud controllerCloudPrefab;
 
-	private enum Clouds {
-		Name
-	}
-
 	protected override void AwakeInherit() {
 
 	}
@@ -26,6 +22,10 @@ public class SettingsClouds : SettingsBase {
 	   
 	public void SetCloudName(string name, string slot) {
 		this.SetPref(Clouds.Name, name, slot);
+	}
+
+	private enum Clouds {
+		Name
 	}
 
 }
