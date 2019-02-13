@@ -12,7 +12,8 @@ namespace COMIRON.GameFramework.Core {
 		private List<ManagerBase> managersList;
 		private List<SettingsBase> settingsLoaded;
 		private List<CanvasBase> canvasesList;
-		
+		private List<CanvasBase> socList;
+
 		private void Awake() {
 			this.managersList = new List<ManagerBase>();
 			this.settingsLoaded = new List<SettingsBase>();
@@ -100,7 +101,18 @@ namespace COMIRON.GameFramework.Core {
 					return (T) Convert.ChangeType(canvas, typeof (T));
 				}
 			}
-			
+		
+			return default(T);
+		}
+
+		protected T GetSocByClass<T>() where T : SocBase {
+			var count = this.socList.Count;
+			for (int i = 0; i < count; i++) {
+				var soc = this.socList[i];
+				if (soc is T) {
+					return (T)Convert.ChangeType(soc, typeof(T));
+				}
+			}
 			return default(T);
 		}
 	}
