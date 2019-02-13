@@ -25,8 +25,7 @@ namespace COMIRON.Managers.ManagerClouds {
 			if (nameCloud == null) {
 				newControllerCloud.name = "Cloud_" + Guid.NewGuid().ToString().Substring(1, 4);
 				this.settingsClouds.SetCloudName(newControllerCloud.name, (this.number).ToString());
-			}
-			else {
+			} else {
 				newControllerCloud.name = nameCloud;
 			}
 			return newControllerCloud;
