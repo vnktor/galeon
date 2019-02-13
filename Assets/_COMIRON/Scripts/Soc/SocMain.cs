@@ -1,7 +1,7 @@
-﻿using COMIRON.GameFramework.Ui;
+﻿using COMIRON.GameFramework.Soc;
 using UnityEngine;
 
-namespace COMIRON.Ui {
+namespace COMIRON.Soc {
 	public class SocMain : SocBase {
 		[SerializeField]
 		private Camera socCamera;
