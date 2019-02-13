@@ -16,10 +16,6 @@ public class SettingsClouds : SettingsBase {
 
 	}
 
-	public string GetCloudNameFromPrefag(System.Enum numberCloud) {
-		return this.GetPref<ControllerCloud>(numberCloud).name;
-	}
-
 	public ControllerCloud GetControllerCloudPrefab() {
 		return this.controllerCloudPrefab;
 	}
