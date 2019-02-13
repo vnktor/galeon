@@ -8,7 +8,7 @@ public class SettingsClouds : SettingsBase {
 	[SerializeField]
 	private ControllerCloud controllerCloudPrefab;
 
-	enum Clouds {
+	private enum Clouds {
 		Name
 	}
 
