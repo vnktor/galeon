@@ -5,8 +5,10 @@ using UnityEngine;
 namespace COMIRON.Managers.ManagerBuildings {
 	public class ManagerBuildings : ManagerBase {
 		private SettingsBuildings settingsBuildings;
+		private int controllerCounter;
 
 		protected override void AwakeInherit() {
+			this.controllerCounter = 0;
 			this.settingsBuildings = this.GetSettings<SettingsBuildings>();
 		}
 
@@ -15,7 +17,7 @@ namespace COMIRON.Managers.ManagerBuildings {
 				this.settingsBuildings.GetControllerHousePrefab(),
 				position
 			);
-			controller.SetBuildingName(name);
+			controller.SetBuildingName(this.GetControllerName(name));
 			return controller;
 		}
 
@@ -24,8 +26,18 @@ namespace COMIRON.Managers.ManagerBuildings {
 				this.settingsBuildings.GetControllerShopPrefab(),
 				position
 			);
-			controller.SetBuildingName(name);
+			controller.SetBuildingName(this.GetControllerName(name));
 			return controller;
+		}
+
+		private string GetControllerName(string newName) {
+			var name = this.settingsBuildings.LoadControllerName(this.controllerCounter.ToString());
+			if (name == null) {
+				this.settingsBuildings.SaveControllerName(newName, this.controllerCounter.ToString());
+				name = newName;
+			}
+			this.controllerCounter++;
+			return name;
 		}
 	}
 }
