@@ -36,19 +36,23 @@ namespace COMIRON.Scenes {
 
 			var roadCreateResult = this.CreateRoad(RoadDirection.Up, groundStartPosition + new Vector3(40, 0.1f, 30), 5);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
-			this.CreateTrees(roadCreateResult.roadFinalPosition, Direction.Right);
+			this.CreateTree();
 			roadCreateResult = this.CreateRoad(RoadDirection.Right, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
-			this.CreateTrees(roadCreateResult.roadFinalPosition, Direction.Right);
+			this.CreateTree();
 			roadCreateResult = this.CreateRoad(RoadDirection.Down, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
-			this.CreateTrees(roadCreateResult.roadFinalPosition, Direction.Right);
+			this.CreateTree();
 			roadCreateResult = this.CreateRoad(RoadDirection.Left, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
-			this.CreateTrees(roadCreateResult.roadFinalPosition, Direction.Right);
+			this.CreateTree();
+			this.CreateTree();
+			this.CreateTree();
+			this.CreateTree();
+			this.CreateTree();
+			this.CreateTree();
 
-
-			var controllerMainBuilding = managerMainBuilding.CreateControllerMainBuilding(groundStartPosition + new Vector3((groundCols - 1) / 2f * groundWidth, 0, (groundRows / 2f - 1) * groundLength));
+            var controllerMainBuilding = managerMainBuilding.CreateControllerMainBuilding(groundStartPosition + new Vector3((groundCols - 1) / 2f * groundWidth, 0, (groundRows / 2f - 1) * groundLength));
 			controllerMainBuilding.OnActionClick += delegate {
 				this.ShowPanelMainBuildingInfo();
 			};
@@ -67,6 +71,7 @@ namespace COMIRON.Scenes {
 
 			Quaternion buildingQuaternion;
 			ControllerBase controller;
+
 			switch (directionBuilding) {
 				case Direction.Left:
 					buildingQuaternion = Quaternion.Euler(0, -90, 0);
@@ -84,25 +89,17 @@ namespace COMIRON.Scenes {
 			controller.transform.localRotation = buildingQuaternion;
 		}
 
-		private void CreateTrees(Vector3 position, Direction directionTrees) {
+		private void CreateTree() {
 			var managerTrees = this.GetManager<ManagerTrees>();
+			var centerTrees = new Vector3(0, 0, 45);
+            Vector3 treePosition = new Vector3(centerTrees.x + Random.Range(Random.Range(-10, -20), Random.Range(10, 20)),0,
+	            centerTrees.z + Random.Range(Random.Range(-20, -10), Random.Range(10, 20)));
 
-			Quaternion treesQuaternion;
+            Quaternion treesQuaternion;
 			ControllerBase controller;
-			switch (directionTrees) {
-				case Direction.Left:
-					treesQuaternion = Quaternion.Euler(0, -90, 0);
-					controller = managerTrees.CreateControllerTree01(position + new Vector3(0, 0, 0));
-					break;
-				case Direction.Right:
-					treesQuaternion = Quaternion.Euler(0, 90, 0);
-					controller = managerTrees.CreateControllerTree02(position + new Vector3(0, 0, 0));
-					break;
-				default:
-					treesQuaternion = Quaternion.Euler(0, -90, 0);
-					controller = managerTrees.CreateControllerTree01(position + new Vector3(30, 0, 0));
-					break;
-			}
+			treesQuaternion = Quaternion.Euler(0, -90, 0);
+
+			controller = managerTrees.CreateControllerTree01(treePosition);
 			controller.transform.localRotation = treesQuaternion;
 		}
 
