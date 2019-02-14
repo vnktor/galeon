@@ -2,35 +2,29 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace COMIRON.Managers.ManagerBuildings
-{
-	public abstract class ControllerBuildings : ControllerBase, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
-	{
+namespace COMIRON.Managers.ManagerBuildings {
+	public abstract class ControllerBuildings : ControllerBase, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler {
 		public event System.Action<ControllerBuildings> OnActionClick;
 
 		private bool dragged = false;
 
 		private string buildingName;
 
-		public void OnPointerClick(PointerEventData eventData)
-		{
+		public void OnPointerClick(PointerEventData eventData) {
 			if (this.OnActionClick != null && !dragged) {
 				this.OnActionClick(this);
 			}
 		}
 
-		public void SetBuildingName(string value)
-		{
+		public void SetBuildingName(string value) {
 			this.buildingName = value;
 		}
 
-		public string GetBuildingName()
-		{
+		public string GetBuildingName() {
 			return this.buildingName;
 		}
 
-		public void OnDrag(PointerEventData eventData)
-		{
+		public void OnDrag(PointerEventData eventData) {
 			RaycastHit hit;
 			Ray ray = eventData.pressEventCamera.ScreenPointToRay(Input.mousePosition);
 			int layerMask = 1 << 9;
@@ -39,13 +33,11 @@ namespace COMIRON.Managers.ManagerBuildings
 			}
 		}
 
-		public void OnBeginDrag(PointerEventData eventData)
-		{
+		public void OnBeginDrag(PointerEventData eventData) {
 			this.dragged = true;
 		}
 
-		public void OnEndDrag(PointerEventData eventData)
-		{
+		public void OnEndDrag(PointerEventData eventData) {
 			this.dragged = false;
 		}
 	}
