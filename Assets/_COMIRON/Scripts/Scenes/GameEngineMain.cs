@@ -42,7 +42,7 @@ namespace COMIRON.Scenes {
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
 			roadCreateResult = this.CreateRoad(RoadDirection.Left, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 6; i++) {
 				this.CreateTree();
 			}
 
@@ -91,10 +91,19 @@ namespace COMIRON.Scenes {
 
 			Quaternion treesQuaternion;
 			ControllerBase controller;
-			treesQuaternion = Quaternion.Euler(0, -90, 0);
 
-			controller = managerTrees.CreateControllerTree01(treePosition);
-			controller.transform.localRotation = treesQuaternion;
+			switch (Random.Range(1, 2)) {
+				case 1:
+					treesQuaternion = Quaternion.Euler(0, Random.Range(-90, 90), 0);
+					controller = managerTrees.CreateControllerTree01(treePosition);
+					controller.transform.localRotation = treesQuaternion;
+					break;
+				case 2:
+					treesQuaternion = Quaternion.Euler(0, Random.Range(-90, 90), 0);
+					controller = managerTrees.CreateControllerTree02(treePosition);
+					controller.transform.localRotation = treesQuaternion;
+					break;
+			}
 		}
 
 		private RoadCreateResult CreateRoad(RoadDirection roadDirection, Vector3 startPosition, int length, int offset = 0) {
