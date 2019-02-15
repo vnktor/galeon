@@ -1,4 +1,5 @@
-﻿using COMIRON.GameFramework.Core;
+﻿using System.Collections;
+using COMIRON.GameFramework.Core;
 using COMIRON.Managers.ManagerBuildings;
 using COMIRON.Managers.ManagerMainBuilding;
 using COMIRON.Managers.ManagerMap;
@@ -42,7 +43,7 @@ namespace COMIRON.Scenes {
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
 			roadCreateResult = this.CreateRoad(RoadDirection.Left, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
-			for (int i = 0; i < 6; i++) {
+			for (int i = 0; i < 10; i++) {
 				this.CreateTree();
 			}
 
@@ -86,23 +87,27 @@ namespace COMIRON.Scenes {
 		private void CreateTree() {
 			var managerTrees = this.GetManager<ManagerTrees>();
 			var centerTrees = new Vector3(0, 0, 45);
-			Vector3 treePosition = new Vector3(centerTrees.x + Random.Range(Random.Range(-10, -20), Random.Range(10, 20)),0,
+			Vector3 treePosition = new Vector3(
+				centerTrees.x + Random.Range(Random.Range(-10, -20), Random.Range(10, 20)), 0,
 				centerTrees.z + Random.Range(Random.Range(-20, -10), Random.Range(10, 20)));
 
 			Quaternion treesQuaternion;
 			ControllerBase controller;
 
-			switch (Random.Range(1, 2)) {
-				case 1:
-					treesQuaternion = Quaternion.Euler(0, Random.Range(-90, 90), 0);
-					controller = managerTrees.CreateControllerTree01(treePosition);
-					controller.transform.localRotation = treesQuaternion;
-					break;
-				case 2:
-					treesQuaternion = Quaternion.Euler(0, Random.Range(-90, 90), 0);
-					controller = managerTrees.CreateControllerTree02(treePosition);
-					controller.transform.localRotation = treesQuaternion;
-					break;
+			int caseSwitch = Random.Range(1, 3);
+
+			switch (caseSwitch) {
+                case 1:
+	                treesQuaternion = Quaternion.Euler(0, Random.Range(-90, 90), 0);
+	                controller = managerTrees.CreateControllerTree01(treePosition);
+	                controller.transform.localRotation = treesQuaternion;
+                    break;
+
+                case 2:
+	                treesQuaternion = Quaternion.Euler(0, Random.Range(-90, 90), 0);
+	                controller = managerTrees.CreateControllerTree02(treePosition);
+	                controller.transform.localRotation = treesQuaternion;
+                    break;
 			}
 		}
 
