@@ -36,23 +36,17 @@ namespace COMIRON.Scenes {
 
 			var roadCreateResult = this.CreateRoad(RoadDirection.Up, groundStartPosition + new Vector3(40, 0.1f, 30), 5);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
-			this.CreateTree();
 			roadCreateResult = this.CreateRoad(RoadDirection.Right, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
-			this.CreateTree();
 			roadCreateResult = this.CreateRoad(RoadDirection.Down, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
-			this.CreateTree();
 			roadCreateResult = this.CreateRoad(RoadDirection.Left, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
-			this.CreateTree();
-			this.CreateTree();
-			this.CreateTree();
-			this.CreateTree();
-			this.CreateTree();
-			this.CreateTree();
+			for (int i = 0; i < 10; i++) {
+				this.CreateTree();
+			}
 
-            var controllerMainBuilding = managerMainBuilding.CreateControllerMainBuilding(groundStartPosition + new Vector3((groundCols - 1) / 2f * groundWidth, 0, (groundRows / 2f - 1) * groundLength));
+			var controllerMainBuilding = managerMainBuilding.CreateControllerMainBuilding(groundStartPosition + new Vector3((groundCols - 1) / 2f * groundWidth, 0, (groundRows / 2f - 1) * groundLength));
 			controllerMainBuilding.OnActionClick += delegate {
 				this.ShowPanelMainBuildingInfo();
 			};
@@ -92,10 +86,10 @@ namespace COMIRON.Scenes {
 		private void CreateTree() {
 			var managerTrees = this.GetManager<ManagerTrees>();
 			var centerTrees = new Vector3(0, 0, 45);
-            Vector3 treePosition = new Vector3(centerTrees.x + Random.Range(Random.Range(-10, -20), Random.Range(10, 20)),0,
-	            centerTrees.z + Random.Range(Random.Range(-20, -10), Random.Range(10, 20)));
+			Vector3 treePosition = new Vector3(centerTrees.x + Random.Range(Random.Range(-10, -20), Random.Range(10, 20)),0,
+				centerTrees.z + Random.Range(Random.Range(-20, -10), Random.Range(10, 20)));
 
-            Quaternion treesQuaternion;
+			Quaternion treesQuaternion;
 			ControllerBase controller;
 			treesQuaternion = Quaternion.Euler(0, -90, 0);
 
