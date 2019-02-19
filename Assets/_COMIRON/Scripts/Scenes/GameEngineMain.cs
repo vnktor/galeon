@@ -1,4 +1,5 @@
-﻿using COMIRON.GameFramework.Core;
+﻿using System.Collections;
+using COMIRON.GameFramework.Core;
 using COMIRON.GameFramework.Ui;
 using COMIRON.Managers.ManagerBuildings;
 using COMIRON.Managers.ManagerMainBuilding;
@@ -6,6 +7,7 @@ using COMIRON.Managers.ManagerMap;
 using COMIRON.Managers.ManagerRoads;
 using COMIRON.Managers.ManagerTransport;
 using COMIRON.Managers.ManagerClouds;
+using COMIRON.Managers.ManagerTrees;
 using COMIRON.Settings;
 using COMIRON.Ui;
 using COMIRON.Ui.Panels;
@@ -49,12 +51,16 @@ namespace COMIRON.Scenes {
 
 			this.CreateClouds(startCloudPosition, endCloudPosition);
 
+			for (int i = 0; i < 10; i++)
+			{
+				this.CreateTree();
+			}
+
 			var controllerMainBuilding = managerMainBuilding.CreateControllerMainBuilding(groundStartPosition + new Vector3((groundCols - 1) / 2f * groundWidth, 0, (groundRows / 2f - 1) * groundLength));
 			controllerMainBuilding.OnActionClick += delegate {
 				this.ShowPanelMainBuildingInfo();
 			};
 		}
-
 
 		protected override void Update() {
 
@@ -89,6 +95,33 @@ namespace COMIRON.Scenes {
 			};
 		}
 
+		private void CreateTree() {
+			var managerTrees = this.GetManager<ManagerTrees>();
+			var centerTrees = new Vector3(0, 0, 45);
+			Vector3 treePosition = new Vector3(
+				centerTrees.x + Random.Range(Random.Range(-10, -20), Random.Range(10, 20)), 0,
+				centerTrees.z + Random.Range(Random.Range(-20, -10), Random.Range(10, 20)));
+
+			Quaternion treesQuaternion;
+			ControllerBase controller;
+
+			int caseSwitch = Random.Range(1, 3);
+
+			switch (caseSwitch) {
+				case 1:
+					treesQuaternion = Quaternion.Euler(0, Random.Range(-90, 90), 0);
+					controller = managerTrees.CreateControllerTree01(treePosition);
+					controller.transform.localRotation = treesQuaternion;
+					break;
+
+				case 2:
+					treesQuaternion = Quaternion.Euler(0, Random.Range(-90, 90), 0);
+					controller = managerTrees.CreateControllerTree02(treePosition);
+					controller.transform.localRotation = treesQuaternion;
+					break;
+			}
+		}
+
 		private RoadCreateResult CreateRoad(RoadDirection roadDirection, Vector3 startPosition, int length, int offset = 0) {
 			var managerRoads = this.GetManager<ManagerRoads>();
 
@@ -112,7 +145,7 @@ namespace COMIRON.Scenes {
 					roadAddPositionDirection = new Vector3(-1, 0, 0);
 					break;
 			}
-			
+
 			for (int i = offset; i < length + offset; i++) {
 				var controllerRoadStraight = managerRoads.CreateControllerRoadStraight(
 					startPosition + new Vector3(0, 0.1f, 0) + roadAddPositionDirection * 7.62f * i
@@ -129,7 +162,6 @@ namespace COMIRON.Scenes {
 			this.CreatCars(
 				startPosition + new Vector3(0, 0.26f, 0) + roadAddPositionDirection * 7.62f * (length + offset)
 			);
-
 
 			var cornerPosition = controllerRoadCorner.transform.position;
 			return new RoadCreateResult {
@@ -185,8 +217,6 @@ namespace COMIRON.Scenes {
 			};
 		}
 
-
-
 		private void ShowPanelBuildingsInfo(ControllerBuildings obj) {
 			var panelInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelBuildingsInfo>();
 			panelInfo.OnActionButtonCloseClick += delegate {
@@ -226,13 +256,10 @@ namespace COMIRON.Scenes {
 
 			panelCloudInfo.Enable();
 		}
-
-
+		
 		private struct RoadCreateResult {
 			public Vector3 roadFinalPosition;
 		}
-
-
 		
 		private enum RoadDirection {
 			Up,
