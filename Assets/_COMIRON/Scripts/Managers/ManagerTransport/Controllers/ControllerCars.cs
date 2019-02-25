@@ -41,8 +41,7 @@ namespace COMIRON.Managers.ManagerTransport{
 		private void Update() {
 			if (Vector3.Distance(this.transform.position, GetNextCorner()) < this.radiusCorners) {
 				this.onCorner = true;
-			}
-			else if (Vector3.Distance(this.transform.position, GetNextCorner()) >= this.radiusCorners && this.onCorner) {
+			} else if (Vector3.Distance(this.transform.position, GetNextCorner()) >= this.radiusCorners && this.onCorner) {
 				this.SetNextCorner();
 			}
 
