@@ -50,11 +50,10 @@ namespace COMIRON.Managers.ManagerTransport{
 				float t = 2 * Mathf.PI * this.radiusCorners/(4 * 5f);
 				this.transform.rotation *= Quaternion.Euler(0, 90f / t * Time.deltaTime, 0);
 				this.transform.Translate(0,0,5f * Time.deltaTime);
-			}
-			else {
+			} else {
 				this.transform.localPosition = Vector3.MoveTowards(
 					this.transform.localPosition,
-					GetNextCorner(),
+					this.GetNextCorner(),
 					5f * Time.deltaTime
 				);
 			}
@@ -62,10 +61,9 @@ namespace COMIRON.Managers.ManagerTransport{
 		
 		private Vector3 GetNextCorner() {
 			if (this.cornerIndex == 3) {
-				return cornerList[0];
-			}
-			else {
-				return cornerList[this.cornerIndex + 1];
+				return this.cornerList[0];
+			} else {
+				return this.cornerList[this.cornerIndex + 1];
 			}
 		}
 
@@ -74,7 +72,6 @@ namespace COMIRON.Managers.ManagerTransport{
 			if (this.cornerIndex > 3) {
 				this.cornerIndex = 0;
 			}
-
 			this.onCorner = false;
 		}
 	}
