@@ -21,6 +21,7 @@ namespace COMIRON.Scenes {
 		private Camera cameraMain;
 		[SerializeField]
 		private EventSystem hashEventSystem;
+		private List<Vector3> cornerList = new List<Vector3>();
 
 		protected override void AwakeInherit() {
 			var managerMap = this.GetManager<ManagerMap>();
@@ -64,9 +65,9 @@ namespace COMIRON.Scenes {
 		protected override void Update() {
 
 		}
-		
+
 		protected override void FixedUpdate() {
-			
+
 		}
 
 		private void CreateBuilding(Vector3 position, Direction directionBuilding) {
@@ -159,7 +160,8 @@ namespace COMIRON.Scenes {
 
 			//Выводим машину в центр каждого угла
 			this.CreatCars(
-				startPosition + new Vector3(0, 0.26f, 0) + roadAddPositionDirection * 7.62f * (length + offset)
+				startPosition + new Vector3(0, 0.26f, 0) + roadAddPositionDirection * 7.62f * (length + offset),
+				roadDirection
 			);
 
 			var cornerPosition = controllerRoadCorner.transform.position;
@@ -190,24 +192,40 @@ namespace COMIRON.Scenes {
 			panelCarInfo.Enable();
 		}
 
-		private void CreatCars(Vector3 position) {
+		private void CreatCars(Vector3 position, RoadDirection roadDirection) {
 			var managerTransport = this.GetManager<ManagerTransport>();
-			string id= Random.Range(0, 10).ToString()+ Random.Range(0, 10).ToString()+ Random.Range(0, 10).ToString();
+			this.cornerList.Add(position);
 
+			int id = cornerList.Count - 1;
 			ControllerCars controllerCars;
 
 			switch (Random.Range(2, 5)) {
 				case 2:
-					controllerCars = managerTransport.CreateControllerCar02(position, "Car02_" + id);
+					controllerCars = managerTransport.CreateControllerCar02(position, "Car02_" + id, cornerList);
 					break;
 				case 3:
-					controllerCars = managerTransport.CreateControllerCar03(position, "Car03_" + id);
+					controllerCars = managerTransport.CreateControllerCar03(position, "Car03_" + id, cornerList);
 					break;
 				case 4:
-					controllerCars = managerTransport.CreateControllerCar04(position, "Car04_" + id);
+					controllerCars = managerTransport.CreateControllerCar04(position, "Car04_" + id, cornerList);
 					break;
 				default:
-					controllerCars = managerTransport.CreateControllerCar04(position, "Car04_" + id);
+					controllerCars = managerTransport.CreateControllerCar04(position, "Car04_" + id, cornerList);
+					break;
+			}
+
+			switch (roadDirection) {
+				case RoadDirection.Up:
+					controllerCars.transform.localRotation = Quaternion.Euler(0, 90f, 0);
+					break;
+				case RoadDirection.Down:
+					controllerCars.transform.localRotation = Quaternion.Euler(0, -90f, 0);
+					break;
+				case RoadDirection.Left:
+					controllerCars.transform.localRotation = Quaternion.Euler(0, 0, 0);
+					break;
+				case RoadDirection.Right:
+					controllerCars.transform.localRotation = Quaternion.Euler(0, 180f, 0);
 					break;
 			}
 
@@ -222,7 +240,7 @@ namespace COMIRON.Scenes {
 				 GameObject.Destroy(panelInfo.gameObject);
 			};
 			panelInfo.SetBuilding(obj);
-			 panelInfo.Enable();
+			panelInfo.Enable();
 		}
 
 		private void CreateClouds(Vector3 startPosition, Vector3 endPosition) {
@@ -255,10 +273,12 @@ namespace COMIRON.Scenes {
 
 			panelCloudInfo.Enable();
 		}
+
 		
 		private struct RoadCreateResult {
 			public Vector3 roadFinalPosition;
 		}
+
 		
 		private enum RoadDirection {
 			Up,
