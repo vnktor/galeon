@@ -8,6 +8,7 @@ using COMIRON.Managers.ManagerRoads;
 using COMIRON.Managers.ManagerTransport;
 using COMIRON.Managers.ManagerClouds;
 using COMIRON.Managers.ManagerTrees;
+using COMIRON.Managers.ManagerRoadSigns;
 using COMIRON.Settings;
 using COMIRON.Ui;
 using COMIRON.Ui.Panels;
@@ -42,13 +43,17 @@ namespace COMIRON.Scenes {
 			var roadCreateResult = this.CreateRoad(RoadDirection.Up, groundStartPosition + new Vector3(40, 0.1f, 30), 5);
 			Vector3 startCloudPosition = roadCreateResult.roadFinalPosition;
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
+			this.CreateRoadSigns(roadCreateResult.roadFinalPosition, RoadDirection.Up);
 			roadCreateResult = this.CreateRoad(RoadDirection.Right, roadCreateResult.roadFinalPosition, 5, 1);
 			Vector3 endCloudPosition = roadCreateResult.roadFinalPosition;
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
+			this.CreateRoadSigns(roadCreateResult.roadFinalPosition, RoadDirection.Down);
 			roadCreateResult = this.CreateRoad(RoadDirection.Down, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Left);
+			this.CreateRoadSigns(roadCreateResult.roadFinalPosition, RoadDirection.Left);
 			roadCreateResult = this.CreateRoad(RoadDirection.Left, roadCreateResult.roadFinalPosition, 5, 1);
 			this.CreateBuilding(roadCreateResult.roadFinalPosition, Direction.Right);
+			this.CreateRoadSigns(roadCreateResult.roadFinalPosition, RoadDirection.Right);
 
 			this.CreateClouds(startCloudPosition, endCloudPosition);
 
@@ -118,6 +123,39 @@ namespace COMIRON.Scenes {
 					treesQuaternion = Quaternion.Euler(0, Random.Range(-90, 90), 0);
 					controller = managerTrees.CreateControllerTree02(treePosition);
 					controller.transform.localRotation = treesQuaternion;
+					break;
+			}
+		}
+
+		private void CreateRoadSigns(Vector3 position, RoadDirection directionRoadSigns) {
+			var managerRoadSigns = this.GetManager<ManagerRoadSigns>();
+			
+			Quaternion roadSignsQuaternion;
+			ControllerBase controller;
+			
+			switch (directionRoadSigns) {
+				case RoadDirection.Up:
+					roadSignsQuaternion = Quaternion.Euler(0, 0, 0);
+					controller = managerRoadSigns.CreateControllerRoadSign01(position + new Vector3(44.7f, -5.5f, -4));
+					controller.transform.localRotation = roadSignsQuaternion;
+					break;
+					
+				case RoadDirection.Down:
+					roadSignsQuaternion = Quaternion.Euler(0, 90, 0);
+					controller = managerRoadSigns.CreateControllerRoadSign02(position + new Vector3(-4, -5.5f, -44.5f));
+					controller.transform.localRotation = roadSignsQuaternion;
+					break;
+					
+				case RoadDirection.Left:
+					roadSignsQuaternion = Quaternion.Euler(0, 0, 0);
+					controller = managerRoadSigns.CreateControllerRoadSign03(position + new Vector3(-1, -5.5f, -4));
+					controller.transform.localRotation = roadSignsQuaternion;
+					break;
+					
+				case RoadDirection.Right:
+					roadSignsQuaternion = Quaternion.Euler(0, 90, 0);
+					controller = managerRoadSigns.CreateControllerRoadSign04(position + new Vector3(-4, -5.5f, 1));
+					controller.transform.localRotation = roadSignsQuaternion;
 					break;
 			}
 		}
