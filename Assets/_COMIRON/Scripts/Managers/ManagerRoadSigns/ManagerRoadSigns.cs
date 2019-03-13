@@ -4,38 +4,48 @@ using UnityEngine;
 
 namespace COMIRON.Managers.ManagerRoadSigns {
 	public class ManagerRoadSigns : ManagerBase {
-		private SettingsRoadSigns SettingsRoadSigns;
+		private SettingsRoadSigns settingsRoadSigns;
 		
 		protected override void AwakeInherit() {
-			this.SettingsRoadSigns = this.GetSettings<SettingsRoadSigns>();
+			this.settingsRoadSigns = this.GetSettings<SettingsRoadSigns>();
 		}
 		
-		public ControllerRoadSign01 CreateControllerRoadSign01(Vector3 position) {
-			return this.CreateController<ControllerRoadSign01>(
-				this.SettingsRoadSigns.GetControllerRoadSign01Prefab(),
+		public ControllerRoadSign01 CreateControllerRoadSign01(Vector3 position, string name) {
+			var controller = this.CreateController<ControllerRoadSign01>(
+				this.settingsRoadSigns.GetControllerRoadSign01Prefab(),
 				position
 			);
+			controller.SetSignName(name);
+			return controller;
 		}
 		
-		public ControllerRoadSign02 CreateControllerRoadSign02(Vector3 position) {
-			return this.CreateController<ControllerRoadSign02>(
-				this.SettingsRoadSigns.GetControllerRoadSign02Prefab(),
+		public ControllerRoadSign02 CreateControllerRoadSign02(Vector3 position, string name) {
+			var controller = this.CreateController<ControllerRoadSign02>(
+				this.settingsRoadSigns.GetControllerRoadSign02Prefab(),
 				position
 			);
+			controller.SetSignName(name);
+			return controller;
 		}
 		
-		public ControllerRoadSign03 CreateControllerRoadSign03(Vector3 position) {
-			return this.CreateController<ControllerRoadSign03>(
-				this.SettingsRoadSigns.GetControllerRoadSign03Prefab(),
+		public ControllerRoadSign03 CreateControllerRoadSign03(Vector3 position, string name)
+		{
+			var controller = this.CreateController<ControllerRoadSign03>(
+				this.settingsRoadSigns.GetControllerRoadSign03Prefab(),
 				position
 			);
+			controller.SetSignName(name);
+			return controller;
 		}
 		
-		public ControllerRoadSign03 CreateControllerRoadSign04(Vector3 position) {
-			return this.CreateController<ControllerRoadSign03>(
-				this.SettingsRoadSigns.GetControllerRoadSign03Prefab(),
+		public ControllerRoadSign04 CreateControllerRoadSign04(Vector3 position, string name)
+		{
+			var controller = this.CreateController<ControllerRoadSign04>(
+				this.settingsRoadSigns.GetControllerRoadSign04Prefab(),
 				position
 			);
+			controller.SetSignName(name);
+			return controller;
 		}
 	}
 }

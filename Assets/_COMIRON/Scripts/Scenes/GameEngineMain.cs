@@ -57,7 +57,7 @@ namespace COMIRON.Scenes {
 
 			this.CreateClouds(startCloudPosition, endCloudPosition);
 
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 20; i++) {
 				this.CreateTree();
 			}
 
@@ -131,34 +131,39 @@ namespace COMIRON.Scenes {
 			var managerRoadSigns = this.GetManager<ManagerRoadSigns>();
 			
 			Quaternion roadSignsQuaternion;
-			ControllerBase controller;
+			ControllerRoadSigns controller;
 			
 			switch (directionRoadSigns) {
 				case RoadDirection.Up:
 					roadSignsQuaternion = Quaternion.Euler(0, 0, 0);
-					controller = managerRoadSigns.CreateControllerRoadSign01(position + new Vector3(44.7f, -5.5f, -4));
-					controller.transform.localRotation = roadSignsQuaternion;
+					controller = managerRoadSigns.CreateControllerRoadSign01(position + new Vector3(44.7f, -5.5f, -4), "sign1" + Random.Range(1, 100).ToString());
 					break;
 					
 				case RoadDirection.Down:
 					roadSignsQuaternion = Quaternion.Euler(0, 90, 0);
-					controller = managerRoadSigns.CreateControllerRoadSign02(position + new Vector3(-4, -5.5f, -44.5f));
-					controller.transform.localRotation = roadSignsQuaternion;
+					controller = managerRoadSigns.CreateControllerRoadSign02(position + new Vector3(-4, -5.5f, -44.5f), "sign2" + Random.Range(1, 100).ToString());
 					break;
 					
 				case RoadDirection.Left:
 					roadSignsQuaternion = Quaternion.Euler(0, 0, 0);
-					controller = managerRoadSigns.CreateControllerRoadSign03(position + new Vector3(-1, -5.5f, -4));
-					controller.transform.localRotation = roadSignsQuaternion;
+					controller = managerRoadSigns.CreateControllerRoadSign03(position + new Vector3(-1, -5.5f, -4), "sign3" + Random.Range(1, 100).ToString());
 					break;
 					
 				case RoadDirection.Right:
 					roadSignsQuaternion = Quaternion.Euler(0, 90, 0);
-					controller = managerRoadSigns.CreateControllerRoadSign04(position + new Vector3(-4, -5.5f, 1));
-					controller.transform.localRotation = roadSignsQuaternion;
+					controller = managerRoadSigns.CreateControllerRoadSign04(position + new Vector3(-4, -5.5f, 1), "sign4" + Random.Range(1, 100).ToString());
+					break;
+
+				default:
+					roadSignsQuaternion = Quaternion.Euler(0, 90, 0);
+					controller = managerRoadSigns.CreateControllerRoadSign04(position + new Vector3(-4, -5.5f, 1), "sign4" + Random.Range(1, 100).ToString());
 					break;
 			}
-		}
+			controller.transform.localRotation = roadSignsQuaternion;
+			controller.OnActionClick += delegate {
+				this.ShowPanelRoadSignsInfo(controller);
+            };
+        }
 
 		private RoadCreateResult CreateRoad(RoadDirection roadDirection, Vector3 startPosition, int length, int offset = 0) {
 			var managerRoads = this.GetManager<ManagerRoads>();
@@ -219,6 +224,15 @@ namespace COMIRON.Scenes {
 			};
 			
 			panelMainBuildingInfo.Enable();
+		}
+
+		private void ShowPanelRoadSignsInfo(ControllerRoadSigns obj) {
+			var panelInfo = this.GetCanvasByClass<CanvasInterface>().AddPanel<PanelRoadSignsInfo>();
+			panelInfo.OnActionButtonCloseClick += delegate {
+				GameObject.Destroy(panelInfo.gameObject);
+			};
+			panelInfo.SetSign(obj);
+			panelInfo.Enable();
 		}
 
 		private void ShowPanelCarInfo(ControllerCars controllerCars) {

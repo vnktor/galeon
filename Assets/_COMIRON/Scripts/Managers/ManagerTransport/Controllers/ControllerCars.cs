@@ -3,7 +3,7 @@ using COMIRON.GameFramework.Core;
 using UnityEngine.EventSystems;
 using UnityEngine;
 
-namespace COMIRON.Managers.ManagerTransport{
+namespace COMIRON.Managers.ManagerTransport {
 	public abstract class ControllerCars : ControllerBase, IPointerClickHandler {
 		public event System.Action<ControllerCars> OnActionClick;
 		private string nameCars;
