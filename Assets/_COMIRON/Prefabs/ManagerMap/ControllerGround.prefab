@@ -37,7 +37,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4531119019383422}
   - component: {fileID: 114025330926280026}
-  m_Layer: 0
+  - component: {fileID: 65330365385172288}
+  m_Layer: 9
   m_Name: ControllerGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,6 +114,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1538353265314304}
   m_Mesh: {fileID: 4300000, guid: ee69fd5d0fd5c394c9db6ae8fefdb5fb, type: 3}
+--- !u!65 &65330365385172288
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1985258921733170}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30.61528, y: 0, z: 30.58448}
+  m_Center: {x: -0.02231216, y: 0, z: -0.006309509}
 --- !u!114 &114025330926280026
 MonoBehaviour:
   m_ObjectHideFlags: 1
